@@ -240,15 +240,15 @@ public class IssueBook extends JPanel {
 		private void initializeComponent() {
 		setPreferredSize(new Dimension(990, 600));
 		setVisible(true);
-		setBounds(new Rectangle(0, 0, 990, 600));
+		setBounds(new Rectangle(0, 50, 990, 600));
 		setBackground(new Color(255, 255, 255));
 		setLayout(null);
 		
 		JPanel panel = new JPanel();
-		panel.setPreferredSize(new Dimension(325, 700));
+		panel.setPreferredSize(new Dimension(325, 600));
 		panel.setLayout(null);
 		panel.setBackground(new Color(255, 153, 51));
-		panel.setBounds(0, 0, 326, 700);
+		panel.setBounds(0, 0, 326, 600);
 		add(panel);
 		
 		bookIdField = new JCTextField();
@@ -320,7 +320,7 @@ public class IssueBook extends JPanel {
 		panel_1.setBounds(new Rectangle(3, 0, 0, 0));
 		panel_1.setLayout(null);
 		panel_1.setBackground(new Color(51, 102, 255));
-		panel_1.setBounds(326, 0, 332, 700);
+		panel_1.setBounds(326, 0, 332, 600);
 		add(panel_1);
 		
 		memberIdField = new JCTextField();
@@ -397,7 +397,7 @@ public class IssueBook extends JPanel {
 		panel_2.setPreferredSize(new Dimension(325, 700));
 		panel_2.setForeground(new Color(0, 0, 255));
 		panel_2.setBackground(new Color(255, 255, 255));
-		panel_2.setBounds(660, 0, 325, 700);
+		panel_2.setBounds(660, 0, 325, 600);
 		add(panel_2);
 		panel_2.setLayout(null);
 		

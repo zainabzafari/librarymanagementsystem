@@ -13,6 +13,7 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.awt.Rectangle;
 
 public class HomePage extends JPanel {
 
@@ -78,12 +79,13 @@ public class HomePage extends JPanel {
 	
 	public void initComponent() {
 		setBackground(new Color(255, 255, 255));
-		setPreferredSize(new Dimension(1200, 800));
+		setPreferredSize(new Dimension(1201, 800));
 		setLayout(null);
 		
 		JPanel panelavailablebooks = new JPanel();
+		panelavailablebooks.setBounds(new Rectangle(0, 60, 0, 0));
 		panelavailablebooks.setPreferredSize(new Dimension(220, 170));
-		panelavailablebooks.setBounds(20, 41, 180, 124);
+		panelavailablebooks.setBounds(20, 65, 160, 115);
 		add(panelavailablebooks);
 		panelavailablebooks.setLayout(null);
 		
@@ -96,7 +98,7 @@ public class HomePage extends JPanel {
 		
 		JLabel lblNewLabel_3 = new JLabel("No. Available books");
 		lblNewLabel_3.setFont(new Font("Yu Gothic Medium", Font.BOLD, 14));
-		lblNewLabel_3.setBounds(0, 0, 180, 35);
+		lblNewLabel_3.setBounds(0, 0, 159, 35);
 		panel.add(lblNewLabel_3);
 		
 		JLabel lblNewLabel = new JLabel("");
@@ -110,9 +112,10 @@ public class HomePage extends JPanel {
 		panelavailablebooks.add(label_availabel);
 		
 		JPanel panel_issuedbooks = new JPanel();
+		panel_issuedbooks.setBounds(new Rectangle(0, 60, 0, 0));
 		panel_issuedbooks.setLayout(null);
 		panel_issuedbooks.setPreferredSize(new Dimension(220, 170));
-		panel_issuedbooks.setBounds(235, 41, 180, 124);
+		panel_issuedbooks.setBounds(205, 65, 160, 115);
 		add(panel_issuedbooks);
 		
 		JPanel panel_1 = new JPanel();
@@ -124,7 +127,7 @@ public class HomePage extends JPanel {
 		
 		JLabel lblNewLabel_3_1 = new JLabel("No. Issued books");
 		lblNewLabel_3_1.setFont(new Font("Yu Gothic Medium", Font.BOLD, 14));
-		lblNewLabel_3_1.setBounds(0, 0, 180, 35);
+		lblNewLabel_3_1.setBounds(0, 0, 159, 35);
 		panel_1.add(lblNewLabel_3_1);
 		
 		JLabel lblNewLabel_1 = new JLabel("");
@@ -138,9 +141,10 @@ public class HomePage extends JPanel {
 		panel_issuedbooks.add(label_issue);
 		
 		JPanel panel_reservedbooks = new JPanel();
+		panel_reservedbooks.setBounds(new Rectangle(0, 60, 0, 0));
 		panel_reservedbooks.setLayout(null);
 		panel_reservedbooks.setPreferredSize(new Dimension(300, 200));
-		panel_reservedbooks.setBounds(442, 41, 180, 124);
+		panel_reservedbooks.setBounds(389, 65, 160, 115);
 		add(panel_reservedbooks);
 		
 		JPanel panel_1_1 = new JPanel();
@@ -152,11 +156,11 @@ public class HomePage extends JPanel {
 		
 		JLabel lblNewLabel_3_2 = new JLabel("No. Reserved books");
 		lblNewLabel_3_2.setFont(new Font("Yu Gothic Medium", Font.BOLD, 14));
-		lblNewLabel_3_2.setBounds(0, 0, 180, 35);
+		lblNewLabel_3_2.setBounds(0, 0, 159, 35);
 		panel_1_1.add(lblNewLabel_3_2);
 		
 		JLabel lblNewLabel_1_1 = new JLabel("");
-		lblNewLabel_1_1.setIcon(new ImageIcon(HomePage.class.getResource("/adminIcons/icons8-reserve-50 (1).png")));
+		lblNewLabel_1_1.setIcon(new ImageIcon(HomePage.class.getResource("/adminIcons/icons8-reserve-50.png")));
 		lblNewLabel_1_1.setBounds(33, 59, 49, 43);
 		panel_reservedbooks.add(lblNewLabel_1_1);
 		
@@ -166,8 +170,9 @@ public class HomePage extends JPanel {
 		panel_reservedbooks.add(label_reserved);
 		
 		JPanel panel_reservedbooks_1 = new JPanel();
+		panel_reservedbooks_1.setBounds(new Rectangle(0, 60, 0, 0));
 		panel_reservedbooks_1.setPreferredSize(new Dimension(230, 170));
-		panel_reservedbooks_1.setBounds(645, 41, 180, 124);
+		panel_reservedbooks_1.setBounds(576, 65, 160, 115);
 		add(panel_reservedbooks_1);
 		panel_reservedbooks_1.setLayout(null);
 		
@@ -180,7 +185,7 @@ public class HomePage extends JPanel {
 		
 		JLabel lblNewLabel_3_3 = new JLabel("No. Overdue books");
 		lblNewLabel_3_3.setFont(new Font("Yu Gothic Medium", Font.BOLD, 14));
-		lblNewLabel_3_3.setBounds(0, 0, 180, 35);
+		lblNewLabel_3_3.setBounds(0, 0, 159, 35);
 		panel_1_1_1.add(lblNewLabel_3_3);
 		
 		JLabel lblNewLabel_1_1_1 = new JLabel("");
@@ -194,9 +199,10 @@ public class HomePage extends JPanel {
 		panel_reservedbooks_1.add(label_overdue);
 		
 		JPanel panel_reservedbooks_1_1 = new JPanel();
+		panel_reservedbooks_1_1.setBounds(new Rectangle(0, 60, 0, 0));
 		panel_reservedbooks_1_1.setLayout(null);
 		panel_reservedbooks_1_1.setPreferredSize(new Dimension(300, 200));
-		panel_reservedbooks_1_1.setBounds(850, 41, 180, 124);
+		panel_reservedbooks_1_1.setBounds(765, 65, 160, 115);
 		add(panel_reservedbooks_1_1);
 		
 		JPanel panel_1_1_1_1 = new JPanel();
@@ -208,7 +214,7 @@ public class HomePage extends JPanel {
 		
 		JLabel lblNewLabel_3_4 = new JLabel("No. Members");
 		lblNewLabel_3_4.setFont(new Font("Yu Gothic Medium", Font.BOLD, 14));
-		lblNewLabel_3_4.setBounds(0, 0, 180, 35);
+		lblNewLabel_3_4.setBounds(0, 0, 159, 35);
 		panel_1_1_1_1.add(lblNewLabel_3_4);
 		
 		JLabel lblNewLabel_1_1_1_1 = new JLabel("");
