@@ -17,6 +17,8 @@ import javax.swing.table.DefaultTableModel;
 
 import libraryBackend.Book;
 import libraryBackend.Library;
+import libraryBackend.CustomTableCellRenderer;
+import libraryBackend.CustomTableHeaderRenderer;
 
 import java.awt.Color;
 import java.awt.Font;
@@ -54,8 +56,9 @@ public class BookManagementPanel extends JPanel {
 	 * Create the panel.
 	 */
 	public BookManagementPanel() {
-		setBounds(new Rectangle(0, 0, 1100, 900));
-		setPreferredSize(new Dimension(1100, 900));
+		setBackground(new Color(255, 255, 255));
+		setBounds(new Rectangle(3, 0, 1100, 900));
+		setPreferredSize(new Dimension(1100, 800));
 		
 		initializeUI();
 		
@@ -207,47 +210,47 @@ public class BookManagementPanel extends JPanel {
 
 	private void initializeUI() {
         setLayout(null);
-        inputPanel.setForeground(new Color(255, 255, 255));
-        inputPanel.setBackground(new Color(255, 153, 51));
-        inputPanel.setBounds(0, 114, 326, 650);
+        inputPanel.setForeground(new Color(0, 0, 0));
+        inputPanel.setBackground(new Color(255, 255, 255));
+        inputPanel.setBounds(0, 12, 326, 800);
 
         // Create input fields
         
         inputPanel.setAlignmentX(2.0f);
         inputPanel.setAlignmentY(2.0f);
-        inputPanel.setPreferredSize(new Dimension(326, 700));
+        inputPanel.setPreferredSize(new Dimension(326, 750));
         titleField = new JTextField();
         titleField.setBounds(new Rectangle(0, 0, 180, 32));
-        titleField.setBorder(new MatteBorder(0, 0, 2, 0, (Color) new Color(255, 255, 255)));
-        titleField.setForeground(new Color(255, 255, 255));
-        titleField.setBackground(new Color(255, 153, 51));
+        titleField.setBorder(new MatteBorder(0, 0, 3, 0, (Color) new Color(0, 0, 0)));
+        titleField.setForeground(new Color(0, 0, 0));
+        titleField.setBackground(new Color(255, 255, 255));
         titleField.setMargin(new Insets(5, 5, 5, 5));
         titleField.setFont(new Font("Serif", Font.PLAIN, 14));
         titleField.setBounds(117, 159, 179, 32);
         titleField.setPreferredSize(new Dimension(180, 32));
         authorField = new JTextField();
         authorField.setBounds(new Rectangle(0, 0, 180, 32));
-        authorField.setBorder(new MatteBorder(0, 0, 2, 0, (Color) new Color(255, 255, 255)));
-        authorField.setForeground(new Color(255, 255, 255));
-        authorField.setBackground(new Color(255, 153, 51));
+        authorField.setBorder(new MatteBorder(0, 0, 3, 0, (Color) new Color(0, 0, 0)));
+        authorField.setForeground(new Color(0, 0, 0));
+        authorField.setBackground(new Color(255, 255, 255));
         authorField.setMargin(new Insets(5, 5, 5, 5));
         authorField.setPreferredSize(new Dimension(180, 32));
         authorField.setFont(new Font("Serif", Font.PLAIN, 14));
         authorField.setBounds(117, 210, 179, 32);
         genreField = new JTextField();
         genreField.setBounds(new Rectangle(0, 0, 180, 32));
-        genreField.setBorder(new MatteBorder(0, 0, 2, 0, (Color) new Color(255, 255, 255)));
-        genreField.setForeground(new Color(255, 255, 255));
-        genreField.setBackground(new Color(255, 153, 51));
+        genreField.setBorder(new MatteBorder(0, 0, 3, 0, (Color) new Color(0, 0, 0)));
+        genreField.setForeground(new Color(0, 0, 0));
+        genreField.setBackground(new Color(255, 255, 255));
         genreField.setPreferredSize(new Dimension(180, 32));
         genreField.setMargin(new Insets(5, 5, 5, 5));
         genreField.setFont(new Font("Serif", Font.PLAIN, 14));
         genreField.setBounds(117, 263, 179, 31);
         isbnField = new JTextField();
         isbnField.setBounds(new Rectangle(0, 0, 180, 32));
-        isbnField.setBorder(new MatteBorder(0, 0, 2, 0, (Color) new Color(255, 255, 255)));
-        isbnField.setForeground(new Color(255, 255, 255));
-        isbnField.setBackground(new Color(255, 153, 51));
+        isbnField.setBorder(new MatteBorder(0, 0, 3, 0, (Color) new Color(0, 0, 0)));
+        isbnField.setForeground(new Color(0, 0, 0));
+        isbnField.setBackground(new Color(255, 255, 255));
         isbnField.setPreferredSize(new Dimension(180, 32));
         isbnField.setFont(new Font("Serif", Font.PLAIN, 14));
         isbnField.setBounds(117, 314, 179, 31);
@@ -255,28 +258,32 @@ public class BookManagementPanel extends JPanel {
         
         
         JLabel label = new JLabel("Title:");
-        label.setForeground(new Color(255, 255, 255));
+        label.setBackground(new Color(255, 255, 255));
+        label.setForeground(new Color(0, 0, 0));
         label.setFont(new Font("Serif", Font.PLAIN, 20));
         label.setBounds(35, 157, 71, 28);
         label.setPreferredSize(new Dimension(100, 20));
         inputPanel.add(label);
         inputPanel.add(titleField);
         JLabel label_1 = new JLabel("Author:");
-        label_1.setForeground(new Color(255, 255, 255));
+        label_1.setBackground(new Color(255, 255, 255));
+        label_1.setForeground(new Color(0, 0, 0));
         label_1.setFont(new Font("Serif", Font.PLAIN, 20));
         label_1.setBounds(35, 208, 71, 28);
         label_1.setPreferredSize(new Dimension(100, 20));
         inputPanel.add(label_1);
         inputPanel.add(authorField);
         JLabel label_2 = new JLabel("Genre:");
-        label_2.setForeground(new Color(255, 255, 255));
+        label_2.setBackground(new Color(255, 255, 255));
+        label_2.setForeground(new Color(0, 0, 0));
         label_2.setPreferredSize(new Dimension(33, 20));
         label_2.setFont(new Font("Serif", Font.PLAIN, 20));
         label_2.setBounds(35, 261, 71, 28);
         inputPanel.add(label_2);
         inputPanel.add(genreField);
         JLabel label_3 = new JLabel("ISBN:");
-        label_3.setForeground(new Color(255, 255, 255));
+        label_3.setBackground(new Color(255, 255, 255));
+        label_3.setForeground(new Color(0, 0, 0));
         label_3.setPreferredSize(new Dimension(27, 20));
         label_3.setFont(new Font("Serif", Font.PLAIN, 20));
         label_3.setBounds(35, 312, 61, 28);
@@ -292,9 +299,9 @@ public class BookManagementPanel extends JPanel {
         searchField = new JTextField();
         searchField.setPreferredSize(new Dimension(180, 32));
         searchField.setBounds(new Rectangle(0, 0, 180, 32));
-        searchField.setForeground(new Color(255, 255, 255));
-        searchField.setBorder(new MatteBorder(0, 0, 2, 0, (Color) new Color(255, 255, 255)));
-        searchField.setBackground(new Color(255, 153, 51));
+        searchField.setForeground(new Color(0, 0, 0));
+        searchField.setBorder(new MatteBorder(0, 0, 3, 0, (Color) new Color(0, 0, 0)));
+        searchField.setBackground(new Color(255, 255, 255));
         searchField.setToolTipText("Search your desired book according to it's author, title, ISBN or Genre");
         searchField.setFont(new Font("Serif", Font.PLAIN, 16));
         searchField.setBounds(117, 109, 179, 32);
@@ -302,7 +309,8 @@ public class BookManagementPanel extends JPanel {
         searchField.setColumns(10);
         
         JLabel lblNewLabel = new JLabel("Search");
-        lblNewLabel.setForeground(new Color(255, 255, 255));
+        lblNewLabel.setBackground(new Color(255, 255, 255));
+        lblNewLabel.setForeground(new Color(0, 0, 0));
         lblNewLabel.setFont(new Font("Serif", Font.PLAIN, 18));
         lblNewLabel.setBounds(35, 109, 51, 28);
         inputPanel.add(lblNewLabel);
@@ -310,50 +318,51 @@ public class BookManagementPanel extends JPanel {
          addButton = new JButton("Add Book");
          addButton.setBounds(new Rectangle(0, 0, 100, 30));
          addButton.setForeground(new Color(255, 255, 255));
-         addButton.setBackground(new Color(0, 51, 255));
+         addButton.setBackground(new Color(0, 153, 255));
          addButton.setFont(new Font("Yu Gothic Medium", Font.PLAIN, 14));
          addButton.setPreferredSize(new Dimension(100, 30));
-         addButton.setBounds(29, 367, 115, 30);
+         addButton.setBounds(35, 375, 115, 30);
          inputPanel.add(addButton);
          
          deleteButton = new JButton("Delete Book");
          deleteButton.setBounds(new Rectangle(0, 0, 100, 30));
          deleteButton.setForeground(new Color(255, 255, 255));
          deleteButton.setFont(new Font("Yu Gothic Medium", Font.PLAIN, 14));
-         deleteButton.setBackground(new Color(0, 51, 255));
+         deleteButton.setBackground(new Color(0, 153, 255));
          deleteButton.setPreferredSize(new Dimension(100, 30));
-         deleteButton.setBounds(181, 367, 115, 30);
+         deleteButton.setBounds(187, 375, 115, 30);
          inputPanel.add(deleteButton);
          
          refreshButton = new JButton("Refresh");
          refreshButton.setBounds(new Rectangle(0, 0, 100, 30));
          refreshButton.setForeground(new Color(255, 255, 255));
-         refreshButton.setBackground(new Color(0, 51, 255));
+         refreshButton.setBackground(new Color(0, 153, 255));
          refreshButton.setFont(new Font("Yu Gothic Medium", Font.PLAIN, 14));
          refreshButton.setPreferredSize(new Dimension(100, 30));
-         refreshButton.setBounds(29, 419, 115, 30);
+         refreshButton.setBounds(35, 427, 115, 30);
          inputPanel.add(refreshButton);
          
          JCTextField bookIdField_1_1_1 = new JCTextField();
          bookIdField_1_1_1.setVerifyInputWhenFocusTarget(false);
-         bookIdField_1_1_1.setForeground(Color.WHITE);
+         bookIdField_1_1_1.setForeground(new Color(0, 0, 0));
          bookIdField_1_1_1.setFont(new Font("Palatino Linotype", Font.PLAIN, 25));
-         bookIdField_1_1_1.setBorder(new MatteBorder(0, 0, 2, 0, (Color) new Color(255, 255, 255)));
-         bookIdField_1_1_1.setBackground(new Color(255, 153, 0));
+         bookIdField_1_1_1.setBorder(new MatteBorder(0, 0, 3, 0, (Color) new Color(0, 0, 0)));
+         bookIdField_1_1_1.setBackground(new Color(0, 0, 0));
          bookIdField_1_1_1.setBounds(112, 84, 163, 2);
          inputPanel.add(bookIdField_1_1_1);
          
          JLabel lblBookDetail = new JLabel("Book Detail");
-         lblBookDetail.setForeground(Color.WHITE);
+         lblBookDetail.setBackground(new Color(255, 255, 255));
+         lblBookDetail.setForeground(new Color(0, 0, 0));
          lblBookDetail.setFont(new Font("Palatino Linotype", Font.PLAIN, 22));
          lblBookDetail.setBounds(110, 33, 206, 40);
          inputPanel.add(lblBookDetail);
          
          JLabel lblNewLabel_1 = new JLabel("");
-         lblNewLabel_1.setIcon(new ImageIcon(BookManagementPanel.class.getResource("/adminIcons/icons8-books-48.png")));
+         lblNewLabel_1.setIcon(new ImageIcon(BookManagementPanel.class.getResource("/adminIcons/icons8-book-48.png")));
          lblNewLabel_1.setForeground(Color.WHITE);
          lblNewLabel_1.setFont(new Font("Palatino Linotype", Font.PLAIN, 16));
-         lblNewLabel_1.setBounds(45, 15, 61, 71);
+         lblNewLabel_1.setBounds(25, 11, 61, 71);
          inputPanel.add(lblNewLabel_1);
          
          JButton refreshButton_1 = new JButton("Refresh");
@@ -361,43 +370,48 @@ public class BookManagementPanel extends JPanel {
          refreshButton_1.setPreferredSize(new Dimension(100, 30));
          refreshButton_1.setForeground(Color.WHITE);
          refreshButton_1.setFont(new Font("Yu Gothic Medium", Font.PLAIN, 14));
-         refreshButton_1.setBackground(new Color(0, 51, 255));
-         refreshButton_1.setBounds(181, 419, 115, 30);
+         refreshButton_1.setBackground(new Color(0, 153, 255));
+         refreshButton_1.setBounds(187, 427, 115, 30);
          inputPanel.add(refreshButton_1);
          
          JScrollPane tableScrollPane = new JScrollPane();
-         tableScrollPane.setBounds(326, 114, 765, 650);
-         tableScrollPane.setPreferredSize(new Dimension(600, 200));
+         tableScrollPane.setBackground(new Color(255, 255, 255));
+         tableScrollPane.setBounds(325, 100, 765, 700);
+         tableScrollPane.setPreferredSize(new Dimension(600, 750));
          add(tableScrollPane);
          tableScrollPane.setVisible(true);
          
          tableModel = new DefaultTableModel();
          tableModel.setColumnIdentifiers(new Object[]{"bookId", "Title", "Author", "Genre", "ISBN", "Status"});
          bookTable = new JTable(tableModel);
+         bookTable.setDefaultRenderer(Object.class, new CustomTableCellRenderer());
+         bookTable.getTableHeader().setDefaultRenderer(new CustomTableHeaderRenderer(bookTable));
+         
          
          tableScrollPane.setViewportView(bookTable);
          
-         JPanel panel = new JPanel();
-         panel.setBackground(new Color(255, 153, 51));
-         panel.setBounds(0, 0, 1100, 114);
-         add(panel);
-         panel.setLayout(null);
-         
-         JSeparator separator = new JSeparator();
-         separator.setBackground(Color.WHITE);
-         separator.setBounds(394, 100, 317, 5);
-         panel.add(separator);
-         
-         JLabel lblNewLabel_2 = new JLabel("");
-         lblNewLabel_2.setIcon(new ImageIcon(BookManagementPanel.class.getResource("/adminIcons/icons8-book-96.png")));
-         lblNewLabel_2.setBounds(396, 11, 106, 78);
-         panel.add(lblNewLabel_2);
-         
-         JLabel lblNewLabel_1_1 = new JLabel("Manage Books");
+         JLabel lblNewLabel_1_1 = new JLabel("");
+         lblNewLabel_1_1.setIcon(new ImageIcon(BookManagementPanel.class.getResource("/adminIcons/icons8-books-48.png")));
          lblNewLabel_1_1.setForeground(Color.WHITE);
-         lblNewLabel_1_1.setFont(new Font("Yu Gothic Medium", Font.BOLD, 21));
-         lblNewLabel_1_1.setBounds(503, 42, 208, 46);
-         panel.add(lblNewLabel_1_1);
+         lblNewLabel_1_1.setFont(new Font("Palatino Linotype", Font.PLAIN, 16));
+         lblNewLabel_1_1.setBounds(510, 0, 61, 71);
+         add(lblNewLabel_1_1);
+         
+         JLabel lblManageBooks = new JLabel("Manage Books");
+         lblManageBooks.setForeground(Color.BLACK);
+         lblManageBooks.setFont(new Font("PMingLiU-ExtB", Font.BOLD, 24));
+         lblManageBooks.setBackground(Color.WHITE);
+         lblManageBooks.setBounds(595, 22, 206, 40);
+         add(lblManageBooks);
+         
+         JCTextField bookIdField_1_1_1_1 = new JCTextField();
+         bookIdField_1_1_1_1.setVerifyInputWhenFocusTarget(false);
+         bookIdField_1_1_1_1.setForeground(Color.BLACK);
+         bookIdField_1_1_1_1.setFont(new Font("Palatino Linotype", Font.PLAIN, 25));
+         bookIdField_1_1_1_1.setBorder(new MatteBorder(0, 0, 3, 0, (Color) new Color(0, 0, 0)));
+         bookIdField_1_1_1_1.setBackground(Color.BLACK);
+         bookIdField_1_1_1_1.setBounds(597, 73, 163, 2);
+         add(bookIdField_1_1_1_1);
          bookTable.setVisible(true);
          
          

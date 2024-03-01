@@ -245,10 +245,10 @@ public class IssueBook extends JPanel {
 		setLayout(null);
 		
 		JPanel panel = new JPanel();
-		panel.setPreferredSize(new Dimension(325, 600));
+		panel.setPreferredSize(new Dimension(325, 750));
 		panel.setLayout(null);
 		panel.setBackground(new Color(255, 153, 51));
-		panel.setBounds(0, 0, 326, 600);
+		panel.setBounds(0, 0, 326, 750);
 		add(panel);
 		
 		bookIdField = new JCTextField();
@@ -294,10 +294,10 @@ public class IssueBook extends JPanel {
 		panel.add(bookAuthorField);
 		
 		JLabel lblNewLabel_1 = new JLabel("");
-		lblNewLabel_1.setIcon(new ImageIcon(IssueBook.class.getResource("/adminIcons/icons8-book-96.png")));
+		lblNewLabel_1.setIcon(new ImageIcon(IssueBook.class.getResource("/adminIcons/icons8-book-red 48.png")));
 		lblNewLabel_1.setForeground(Color.WHITE);
 		lblNewLabel_1.setFont(new Font("Palatino Linotype", Font.PLAIN, 16));
-		lblNewLabel_1.setBounds(20, 52, 94, 94);
+		lblNewLabel_1.setBounds(55, 61, 50, 50);
 		panel.add(lblNewLabel_1);
 		
 		JCTextField bookIdField_1_1_1 = new JCTextField();
@@ -306,13 +306,13 @@ public class IssueBook extends JPanel {
 		bookIdField_1_1_1.setFont(new Font("Palatino Linotype", Font.PLAIN, 25));
 		bookIdField_1_1_1.setBorder(new MatteBorder(0, 0, 2, 0, (Color) new Color(255, 255, 255)));
 		bookIdField_1_1_1.setBackground(new Color(255, 153, 0));
-		bookIdField_1_1_1.setBounds(124, 144, 163, 2);
+		bookIdField_1_1_1.setBounds(114, 131, 163, 2);
 		panel.add(bookIdField_1_1_1);
 		
 		JLabel lblBookDetail = new JLabel("Book Detail");
 		lblBookDetail.setForeground(Color.WHITE);
 		lblBookDetail.setFont(new Font("Palatino Linotype", Font.PLAIN, 25));
-		lblBookDetail.setBounds(120, 71, 206, 40);
+		lblBookDetail.setBounds(115, 93, 206, 40);
 		panel.add(lblBookDetail);
 		
 		JPanel panel_1 = new JPanel();
@@ -320,7 +320,7 @@ public class IssueBook extends JPanel {
 		panel_1.setBounds(new Rectangle(3, 0, 0, 0));
 		panel_1.setLayout(null);
 		panel_1.setBackground(new Color(51, 102, 255));
-		panel_1.setBounds(326, 0, 332, 600);
+		panel_1.setBounds(326, 0, 332, 750);
 		add(panel_1);
 		
 		memberIdField = new JCTextField();
@@ -366,10 +366,10 @@ public class IssueBook extends JPanel {
 		panel_1.add(lastNameField);
 		
 		JLabel lblNewLabel_1_3 = new JLabel("");
-		lblNewLabel_1_3.setIcon(new ImageIcon(IssueBook.class.getResource("/adminIcons/icons8-student-100.png")));
+		lblNewLabel_1_3.setIcon(new ImageIcon(IssueBook.class.getResource("/adminIcons/icons8-student-50.png")));
 		lblNewLabel_1_3.setForeground(Color.WHITE);
 		lblNewLabel_1_3.setFont(new Font("Palatino Linotype", Font.PLAIN, 16));
-		lblNewLabel_1_3.setBounds(20, 52, 86, 82);
+		lblNewLabel_1_3.setBounds(49, 57, 50, 50);
 		panel_1.add(lblNewLabel_1_3);
 		
 		JLabel lblNewLabel_1_1_1_1 = new JLabel("");
@@ -389,7 +389,7 @@ public class IssueBook extends JPanel {
 		JLabel lblMemberDetails = new JLabel("Member Details");
 		lblMemberDetails.setForeground(new Color(255, 255, 255));
 		lblMemberDetails.setFont(new Font("Palatino Linotype", Font.PLAIN, 25));
-		lblMemberDetails.setBounds(126, 67, 206, 40);
+		lblMemberDetails.setBounds(116, 81, 206, 40);
 		panel_1.add(lblMemberDetails);
 		
 		JPanel panel_2 = new JPanel();
@@ -397,7 +397,7 @@ public class IssueBook extends JPanel {
 		panel_2.setPreferredSize(new Dimension(325, 700));
 		panel_2.setForeground(new Color(0, 0, 255));
 		panel_2.setBackground(new Color(255, 255, 255));
-		panel_2.setBounds(660, 0, 325, 600);
+		panel_2.setBounds(660, 0, 325, 750);
 		add(panel_2);
 		panel_2.setLayout(null);
 		
@@ -406,14 +406,14 @@ public class IssueBook extends JPanel {
 		bookIdField_2.setForeground(new Color(0, 0, 160));
 		bookIdField_2.setSize(new Dimension(200, 4));
 		bookIdField_2.setVerifyInputWhenFocusTarget(false);
-		bookIdField_2.setBounds(135, 129, 150, 3);
+		bookIdField_2.setBounds(91, 129, 200, 3);
 		bookIdField_2.setFont(new Font("Palatino Linotype", Font.PLAIN, 16));
 		bookIdField_2.setBorder(new MatteBorder(0, 0, 2, 0, (Color) new Color(0, 0, 255)));
 		bookIdField_2.setBackground(new Color(255, 255, 255));
 		panel_2.add(bookIdField_2);
 		
 		JLabel lblIssueBook = new JLabel("Issue Book");
-		lblIssueBook.setBounds(135, 73, 136, 40);
+		lblIssueBook.setBounds(91, 73, 136, 40);
 		lblIssueBook.setForeground(new Color(51, 0, 255));
 		lblIssueBook.setFont(new Font("Palatino Linotype", Font.PLAIN, 25));
 		panel_2.add(lblIssueBook);
@@ -483,8 +483,8 @@ public class IssueBook extends JPanel {
 		panel_2.add(issueButton);
 		
 		JLabel lblNewLabel_5 = new JLabel("");
-		lblNewLabel_5.setBounds(37, 37, 86, 86);
-		lblNewLabel_5.setIcon(new ImageIcon(IssueBook.class.getResource("/adminIcons/icons8-books-96.png")));
+		lblNewLabel_5.setBounds(32, 50, 50, 50);
+		lblNewLabel_5.setIcon(new ImageIcon(IssueBook.class.getResource("/adminIcons/icons8-books-48.png")));
 		panel_2.add(lblNewLabel_5);
 		
 		JLabel lblNewLabel_1_2_2_1 = new JLabel("");

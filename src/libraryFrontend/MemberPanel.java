@@ -237,7 +237,7 @@ public class MemberPanel extends JPanel {
 		setLayout(null);
 		
 		panel = new JPanel();
-		panel.setBounds(-15, -16, 325, 644);
+		panel.setBounds(0, 0, 325, 750);
 		panel.setBackground(new Color(0, 102, 255));
 		add(panel);
 		panel.setLayout(null);
@@ -283,7 +283,7 @@ public class MemberPanel extends JPanel {
 		bookAuthorField.setFont(new Font("Palatino Linotype", Font.PLAIN, 16));
 		bookAuthorField.setBorder(new MatteBorder(0, 0, 2, 0, (Color) new Color(255, 255, 255)));
 		bookAuthorField.setBackground(new Color(0, 102, 255));
-		bookAuthorField.setBounds(91, 274, 200, 32);
+		bookAuthorField.setBounds(101, 266, 200, 32);
 		panel.add(bookAuthorField);
 		
 		JLabel lblNewLabel_1 = new JLabel("");
@@ -358,7 +358,7 @@ public class MemberPanel extends JPanel {
 		
 		JPanel panel_1 = new JPanel();
 		panel_1.setBackground(new Color(255, 255, 255));
-		panel_1.setBounds(309, -16, 670, 644);
+		panel_1.setBounds(325, 0, 670, 750);
 		add(panel_1);
 		panel_1.setLayout(null);
 		
@@ -384,7 +384,7 @@ public class MemberPanel extends JPanel {
          tableModel.setColumnIdentifiers(new Object[]{"bookId", "Title", "Author", "Genre", "ISBN"});
        
         searchScrollPane = new JScrollPane();
- 		searchScrollPane.setBounds(20, 70, 620, 200);
+ 		searchScrollPane.setBounds(20, 70, 620, 629);
  		panel_1.add(searchScrollPane);
  		
          searchBookTable = new JTable(tableModel);

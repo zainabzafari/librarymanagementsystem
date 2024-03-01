@@ -50,6 +50,7 @@ public class MemberBorrowedBook extends JPanel {
 	 * Create the panel.
 	 */
 	public MemberBorrowedBook() {
+		setBackground(new Color(255, 255, 255));
 		
 		initComponents();
 		
@@ -101,34 +102,34 @@ public class MemberBorrowedBook extends JPanel {
 	    }
 	
 	private void initComponents() {
-		setPreferredSize(new Dimension(1100, 700));
+		setPreferredSize(new Dimension(1100, 750));
 		setLayout(null);
 		
 		JPanel panel = new JPanel();
 		panel.setLayout(null);
-		panel.setBackground(new Color(0, 51, 255));
-		panel.setBounds(0, 0, 1100, 145);
+		panel.setBackground(new Color(255, 255, 255));
+		panel.setBounds(0, 0, 1100, 77);
 		add(panel);
 		
 		JLabel lblNewLabel = new JLabel("");
-		lblNewLabel.setIcon(new ImageIcon(MemberBorrowedBook.class.getResource("/adminIcons/icons8-book-96.png")));
-		lblNewLabel.setBounds(419, 11, 106, 78);
+		lblNewLabel.setIcon(new ImageIcon(MemberBorrowedBook.class.getResource("/adminIcons/icons8-book-48.png")));
+		lblNewLabel.setBounds(439, 11, 54, 54);
 		panel.add(lblNewLabel);
 		
 		JSeparator separator = new JSeparator();
-		separator.setBackground(Color.WHITE);
-		separator.setBounds(417, 100, 317, 5);
+		separator.setBackground(new Color(0, 0, 0));
+		separator.setBounds(439, 63, 270, 2);
 		panel.add(separator);
 		
 		JLabel lblNewLabel_1 = new JLabel("Borrowed Books Details");
-		lblNewLabel_1.setForeground(Color.WHITE);
+		lblNewLabel_1.setForeground(new Color(0, 0, 0));
 		lblNewLabel_1.setFont(new Font("Yu Gothic Medium", Font.BOLD, 18));
-		lblNewLabel_1.setBounds(526, 42, 208, 46);
+		lblNewLabel_1.setBounds(494, 24, 248, 46);
 		panel.add(lblNewLabel_1);
 		
 	
 		borrowedScrollPane = new JScrollPane();
-		borrowedScrollPane.setBounds(0, 147, 1100, 387);
+		borrowedScrollPane.setBounds(0, 75, 1090, 480);
 		add(borrowedScrollPane);
 		
 		borrowedTableModel = new DefaultTableModel();
@@ -140,14 +141,14 @@ public class MemberBorrowedBook extends JPanel {
 		
 		extendButton = new RSMaterialButtonRectangle();
 		extendButton.setText("Extend ");
-		extendButton.setBackground(new Color(51, 51, 255));
-		extendButton.setBounds(72, 545, 421, 53);
+		extendButton.setBackground(new Color(51, 153, 255));
+		extendButton.setBounds(72, 581, 421, 53);
 		add(extendButton);
 		
 		lostButton = new RSMaterialButtonRectangle();
 		lostButton.setText("Mark as lost");
-		lostButton.setBackground(new Color(51, 51, 255));
-		lostButton.setBounds(592, 545, 421, 53);
+		lostButton.setBackground(new Color(51, 153, 255));
+		lostButton.setBounds(592, 581, 421, 53);
 		add(lostButton);
 
 	}

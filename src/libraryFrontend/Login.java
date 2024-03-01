@@ -28,6 +28,8 @@ import org.mindrot.jbcrypt.BCrypt;
 import libraryBackend.SessionManager;
 import libraryBackend.UserAuthentication;
 import javax.swing.JPasswordField;
+import java.awt.Toolkit;
+import javax.swing.border.MatteBorder;
 
 
 
@@ -59,6 +61,7 @@ public class Login extends JFrame  {
 	 * Create the frame.
 	 */
 	public Login() {
+		setIconImage(Toolkit.getDefaultToolkit().getImage(Login.class.getResource("/adminIcons/icons8-book-red 48.png")));
 		
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -193,6 +196,7 @@ public class Login extends JFrame  {
 
 	private void initUI() {
 		contentPane = new JPanel();
+		contentPane.setBackground(new Color(211, 211, 211));
 		contentPane.setAlignmentY(1.0f);
 		contentPane.setAlignmentX(1.0f);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -201,8 +205,7 @@ public class Login extends JFrame  {
 		contentPane.setLayout(null);
 		
 		JPanel panel = new JPanel();
-		panel.setBackground(new Color(204, 204, 204));
-		panel.setToolTipText("Login");
+		panel.setBackground(new Color(51, 102, 255));
 		panel.setName("Login");
 		panel.setFont(new Font("Tahoma", Font.PLAIN, 22));
 		panel.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Login", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(102, 102, 255)));
@@ -213,38 +216,50 @@ public class Login extends JFrame  {
 		panel.setLayout(null);
 		
 		JLabel lblUsername = new JLabel("Username:");
+		lblUsername.setForeground(new Color(0, 0, 0));
+		lblUsername.setBackground(new Color(51, 102, 255));
 		lblUsername.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		lblUsername.setBounds(31, 33, 120, 30);
 		panel.add(lblUsername);
 		lblUsername.setPreferredSize(new Dimension(150, 30));
 		
 		JLabel lblPassword = new JLabel("Password:");
+		lblPassword.setForeground(new Color(0, 0, 0));
+		lblPassword.setBackground(new Color(51, 102, 255));
 		lblPassword.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		lblPassword.setBounds(31, 74, 120, 30);
+		lblPassword.setBounds(31, 77, 120, 30);
 		panel.add(lblPassword);
 		lblPassword.setPreferredSize(new Dimension(150, 30));
 		
 		txtUsername = new JTextField();
+		txtUsername.setBackground(new Color(51, 102, 255));
+		txtUsername.setBorder(new MatteBorder(0, 0, 3, 0, (Color) new Color(255, 255, 255)));
 		txtUsername.setBounds(151, 33, 157, 30);
 		panel.add(txtUsername);
 		txtUsername.setPreferredSize(new Dimension(150, 30));
 		txtUsername.setColumns(10);
 		
 		btnLogin = new JButton("Login");
+		btnLogin.setForeground(new Color(255, 255, 255));
+		btnLogin.setBackground(new Color(0, 0, 102));
 		btnLogin.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		btnLogin.setBounds(28, 115, 90, 30);
+		btnLogin.setBounds(31, 131, 90, 30);
 		panel.add(btnLogin);
 		btnLogin.setPreferredSize(new Dimension(50, 30));
 		
 		
 		
 		JLabel lblForgotPassword = new JLabel("Forgot Password?");
+		lblForgotPassword.setForeground(new Color(0, 0, 0));
+		lblForgotPassword.setBackground(new Color(51, 102, 255));
 		lblForgotPassword.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		lblForgotPassword.setBounds(151, 115, 157, 30);
+		lblForgotPassword.setBounds(151, 131, 157, 30);
 		panel.add(lblForgotPassword);
 		lblForgotPassword.setPreferredSize(new Dimension(150, 30));
 		
 		passwordField = new JPasswordField();
+		passwordField.setBorder(new MatteBorder(0, 0, 3, 0, (Color) new Color(255, 255, 255)));
+		passwordField.setBackground(new Color(51, 102, 255));
 		passwordField.setBounds(151, 81, 157, 30);
 		panel.add(passwordField);
 	

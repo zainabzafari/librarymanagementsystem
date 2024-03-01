@@ -27,6 +27,7 @@ public class HomePage extends JPanel {
 	 * Create the panel.
 	 */
 	public HomePage() {
+		setBounds(new Rectangle(0, 0, 1100, 900));
 		initComponent();
 		
 		updateLabels();
@@ -83,9 +84,9 @@ public class HomePage extends JPanel {
 		setLayout(null);
 		
 		JPanel panelavailablebooks = new JPanel();
-		panelavailablebooks.setBounds(new Rectangle(0, 60, 0, 0));
+		panelavailablebooks.setBounds(new Rectangle(0, 20, 0, 0));
 		panelavailablebooks.setPreferredSize(new Dimension(220, 170));
-		panelavailablebooks.setBounds(20, 65, 160, 115);
+		panelavailablebooks.setBounds(20, 30, 160, 115);
 		add(panelavailablebooks);
 		panelavailablebooks.setLayout(null);
 		
@@ -112,10 +113,10 @@ public class HomePage extends JPanel {
 		panelavailablebooks.add(label_availabel);
 		
 		JPanel panel_issuedbooks = new JPanel();
-		panel_issuedbooks.setBounds(new Rectangle(0, 60, 0, 0));
+		panel_issuedbooks.setBounds(new Rectangle(0, 30, 0, 0));
 		panel_issuedbooks.setLayout(null);
 		panel_issuedbooks.setPreferredSize(new Dimension(220, 170));
-		panel_issuedbooks.setBounds(205, 65, 160, 115);
+		panel_issuedbooks.setBounds(205, 30, 160, 115);
 		add(panel_issuedbooks);
 		
 		JPanel panel_1 = new JPanel();
@@ -141,10 +142,10 @@ public class HomePage extends JPanel {
 		panel_issuedbooks.add(label_issue);
 		
 		JPanel panel_reservedbooks = new JPanel();
-		panel_reservedbooks.setBounds(new Rectangle(0, 60, 0, 0));
+		panel_reservedbooks.setBounds(new Rectangle(0, 30, 0, 0));
 		panel_reservedbooks.setLayout(null);
 		panel_reservedbooks.setPreferredSize(new Dimension(300, 200));
-		panel_reservedbooks.setBounds(389, 65, 160, 115);
+		panel_reservedbooks.setBounds(389, 30, 160, 115);
 		add(panel_reservedbooks);
 		
 		JPanel panel_1_1 = new JPanel();
@@ -170,9 +171,9 @@ public class HomePage extends JPanel {
 		panel_reservedbooks.add(label_reserved);
 		
 		JPanel panel_reservedbooks_1 = new JPanel();
-		panel_reservedbooks_1.setBounds(new Rectangle(0, 60, 0, 0));
+		panel_reservedbooks_1.setBounds(new Rectangle(0, 30, 0, 0));
 		panel_reservedbooks_1.setPreferredSize(new Dimension(230, 170));
-		panel_reservedbooks_1.setBounds(576, 65, 160, 115);
+		panel_reservedbooks_1.setBounds(576, 30, 160, 115);
 		add(panel_reservedbooks_1);
 		panel_reservedbooks_1.setLayout(null);
 		
@@ -199,10 +200,10 @@ public class HomePage extends JPanel {
 		panel_reservedbooks_1.add(label_overdue);
 		
 		JPanel panel_reservedbooks_1_1 = new JPanel();
-		panel_reservedbooks_1_1.setBounds(new Rectangle(0, 60, 0, 0));
+		panel_reservedbooks_1_1.setBounds(new Rectangle(0, 30, 0, 0));
 		panel_reservedbooks_1_1.setLayout(null);
 		panel_reservedbooks_1_1.setPreferredSize(new Dimension(300, 200));
-		panel_reservedbooks_1_1.setBounds(765, 65, 160, 115);
+		panel_reservedbooks_1_1.setBounds(765, 30, 160, 115);
 		add(panel_reservedbooks_1_1);
 		
 		JPanel panel_1_1_1_1 = new JPanel();

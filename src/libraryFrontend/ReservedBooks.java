@@ -28,6 +28,7 @@ public class ReservedBooks extends JPanel {
 	 * Create the panel.
 	 */
 	public ReservedBooks() {
+		setBackground(new Color(255, 255, 255));
 		initComponents();
 		loadReservedBooks();
 		
@@ -69,33 +70,34 @@ public class ReservedBooks extends JPanel {
 	
 	  
 	  private void initComponents() {
-		setPreferredSize(new Dimension(1100, 700));
+		setPreferredSize(new Dimension(1100, 750));
 		setLayout(null);
 		
 		JPanel panel = new JPanel();
-		panel.setBackground(new Color(0, 51, 255));
-		panel.setBounds(0, 0, 1100, 145);
+		panel.setBackground(new Color(255, 255, 255));
+		panel.setBounds(0, 0, 1100, 77);
 		add(panel);
 		panel.setLayout(null);
 		
 		JLabel lblNewLabel = new JLabel("");
-		lblNewLabel.setIcon(new ImageIcon(ReservedBooks.class.getResource("/adminIcons/icons8-book-96.png")));
-		lblNewLabel.setBounds(419, 11, 106, 78);
+		lblNewLabel.setIcon(new ImageIcon(ReservedBooks.class.getResource("/adminIcons/icons8-book-48.png")));
+		lblNewLabel.setBounds(419, 11, 50, 50);
 		panel.add(lblNewLabel);
 		
 		JSeparator separator = new JSeparator();
-		separator.setBackground(new Color(255, 255, 255));
-		separator.setBounds(417, 100, 317, 5);
+		separator.setForeground(new Color(0, 0, 0));
+		separator.setBackground(new Color(0, 0, 0));
+		separator.setBounds(429, 60, 317, 5);
 		panel.add(separator);
 		
 		JLabel lblNewLabel_1 = new JLabel("Reserved Books Details");
 		lblNewLabel_1.setFont(new Font("Yu Gothic Medium", Font.BOLD, 18));
-		lblNewLabel_1.setForeground(new Color(255, 255, 255));
-		lblNewLabel_1.setBounds(526, 42, 208, 46);
+		lblNewLabel_1.setForeground(new Color(0, 0, 0));
+		lblNewLabel_1.setBounds(479, 34, 208, 30);
 		panel.add(lblNewLabel_1);
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(0, 147, 1100, 553);
+		scrollPane.setBounds(0, 77, 1100, 553);
 		add(scrollPane);
 		
 		model = new DefaultTableModel();

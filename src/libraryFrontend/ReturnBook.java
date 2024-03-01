@@ -49,6 +49,7 @@ public class ReturnBook extends JPanel {
 	 * Create the panel.
 	 */
 	public ReturnBook() {
+		setBackground(new Color(255, 255, 255));
 		initializeComponent();
 		
 		BookDetails.addActionListener(new ActionListener() {
@@ -117,7 +118,7 @@ public class ReturnBook extends JPanel {
 
 	private void initializeComponent() {
 		setPreferredSize(new Dimension(1050, 600));
-		setBounds(new Rectangle(0, 0, 1050, 600));
+		setBounds(new Rectangle(0, 0, 1050, 750));
 		setLayout(null);
 		
 		JLabel lblNewLabel = new JLabel("");
@@ -130,7 +131,7 @@ public class ReturnBook extends JPanel {
 		panel.setLayout(null);
 		panel.setPreferredSize(new Dimension(325, 600));
 		panel.setBackground(new Color(255, 153, 0));
-		panel.setBounds(400, 0, 325, 600);
+		panel.setBounds(400, 0, 325, 750);
 		add(panel);
 		
 		issueIdField = new JCTextField();
@@ -147,10 +148,10 @@ public class ReturnBook extends JPanel {
 		panel.add(lblIssueId);
 		
 		JLabel lblNewLabel_1_1 = new JLabel("");
-		lblNewLabel_1_1.setIcon(new ImageIcon(ReturnBook.class.getResource("/adminIcons/icons8-book-96.png")));
+		lblNewLabel_1_1.setIcon(new ImageIcon(ReturnBook.class.getResource("/adminIcons/icons8-book-red 48.png")));
 		lblNewLabel_1_1.setForeground(Color.WHITE);
 		lblNewLabel_1_1.setFont(new Font("Palatino Linotype", Font.PLAIN, 16));
-		lblNewLabel_1_1.setBounds(20, 52, 94, 94);
+		lblNewLabel_1_1.setBounds(20, 52, 50, 50);
 		panel.add(lblNewLabel_1_1);
 		
 		JCTextField bookIdField_1_1_1 = new JCTextField();
@@ -158,7 +159,7 @@ public class ReturnBook extends JPanel {
 		bookIdField_1_1_1.setFont(new Font("Palatino Linotype", Font.PLAIN, 25));
 		bookIdField_1_1_1.setBorder(new MatteBorder(0, 0, 2, 0, (Color) new Color(255, 255, 255)));
 		bookIdField_1_1_1.setBackground(new Color(255, 153, 0));
-		bookIdField_1_1_1.setBounds(124, 130, 163, 3);
+		bookIdField_1_1_1.setBounds(117, 111, 163, 3);
 		panel.add(bookIdField_1_1_1);
 		
 		JLabel lblNewLabel_1_2 = new JLabel("Member ID:");
@@ -216,7 +217,7 @@ public class ReturnBook extends JPanel {
 		JLabel lblBookDetail = new JLabel("Book Detail");
 		lblBookDetail.setForeground(new Color(255, 255, 255));
 		lblBookDetail.setFont(new Font("Palatino Linotype", Font.PLAIN, 25));
-		lblBookDetail.setBounds(148, 64, 150, 40);
+		lblBookDetail.setBounds(114, 64, 150, 40);
 		panel.add(lblBookDetail);
 		
 		JPanel panel_2 = new JPanel();
@@ -224,20 +225,20 @@ public class ReturnBook extends JPanel {
 		panel_2.setPreferredSize(new Dimension(325, 600));
 		panel_2.setForeground(Color.BLUE);
 		panel_2.setBackground(Color.WHITE);
-		panel_2.setBounds(725, 0, 325, 600);
+		panel_2.setBounds(725, 0, 325, 750);
 		add(panel_2);
 		
 		JCTextField bookIdField_2 = new JCTextField();
 		bookIdField_2.setFont(new Font("Palatino Linotype", Font.PLAIN, 16));
 		bookIdField_2.setBorder(new MatteBorder(0, 0, 2, 0, (Color) new Color(0, 0, 255)));
 		bookIdField_2.setBackground(Color.WHITE);
-		bookIdField_2.setBounds(135, 130, 150, 3);
+		bookIdField_2.setBounds(91, 110, 200, 3);
 		panel_2.add(bookIdField_2);
 		
 		JLabel lblReturnBook = new JLabel("Return Book");
 		lblReturnBook.setForeground(new Color(51, 0, 255));
 		lblReturnBook.setFont(new Font("Palatino Linotype", Font.PLAIN, 25));
-		lblReturnBook.setBounds(135, 73, 150, 40);
+		lblReturnBook.setBounds(102, 60, 150, 40);
 		panel_2.add(lblReturnBook);
 		
 		JLabel lblNewLabel_2_2 = new JLabel("Book Id:");
@@ -280,8 +281,8 @@ public class ReturnBook extends JPanel {
 		panel_2.add(ReturnBook);
 		
 		JLabel lblNewLabel_5 = new JLabel("");
-		lblNewLabel_5.setIcon(new ImageIcon(ReturnBook.class.getResource("/adminIcons/icons8-books-96.png")));
-		lblNewLabel_5.setBounds(37, 37, 86, 86);
+		lblNewLabel_5.setIcon(new ImageIcon(ReturnBook.class.getResource("/adminIcons/icons8-books-48.png")));
+		lblNewLabel_5.setBounds(37, 37, 50, 50);
 		panel_2.add(lblNewLabel_5);
 		
 		JLabel lblNewLabel_1_2_2_1 = new JLabel("");

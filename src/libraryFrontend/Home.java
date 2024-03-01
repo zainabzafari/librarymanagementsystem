@@ -249,13 +249,16 @@ public class Home extends JFrame {
 
 	        // Create content panel with CardLayout
 	        contentPanel = new JPanel();
+
+	        contentPanel.setBorder(new EmptyBorder(50, 0, 0, 0));
 	        cardLayout = new CardLayout();
-	        cardLayout.setVgap(50);
 	        contentPanel.setLayout(cardLayout);
+	        
 
 	        // Add panels to content panel
 	        HomePage homepage = new HomePage();
-	        homepage.setPreferredSize(new Dimension(1100, 600));
+	        homepage.setBounds(new Rectangle(0, 0, 1100, 900));
+	        homepage.setPreferredSize(new Dimension(1100, 900));
 	        contentPanel.add(homepage, "Home Page");
 	        
 	        BookManagementPanel manageBookPanel = new BookManagementPanel();
