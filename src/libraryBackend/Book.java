@@ -26,6 +26,15 @@ public class Book {
         this.isbn = isbn;
         this.status = status;
     }
+    
+
+    public Book(int bookId, String title, String author, String genre, String isbn) {
+        this.bookId = bookId;
+        this.title = title;
+        this.author = author;
+        this.genre = genre;
+        this.isbn = isbn;
+    }
  
 
 

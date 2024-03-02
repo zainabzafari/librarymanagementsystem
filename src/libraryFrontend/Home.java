@@ -69,7 +69,7 @@ public class Home extends JFrame {
 	        
 	        
 	        titleBar = new JPanel(new BorderLayout());
-	        titleBar.setBackground(new Color(0, 0, 204));
+	        titleBar.setBackground(new Color (0, 153, 255));
 
 	        titleBar.setPreferredSize(new Dimension(10, 50));
 	      
@@ -121,7 +121,7 @@ public class Home extends JFrame {
 	        minimizeButton.setFocusable(true);
 	        minimizeButton.setMargin(new Insets(4, 4, 4, 4));
 	        minimizeButton.setFont(new Font("Tahoma", Font.PLAIN, 35));
-	        minimizeButton.setBackground(new Color(0, 0, 204));
+	        minimizeButton.setBackground(new Color(0, 153, 255));
 	        minimizeButton.setForeground(new Color(0, 0, 0));
 	        
 	        
@@ -140,7 +140,7 @@ public class Home extends JFrame {
 	        maximizeButton.setFocusable(false);
 	        maximizeButton.setMargin(new Insets(4, 4, 4, 4));
 	        maximizeButton.setFont(new Font("Tahoma", Font.BOLD, 25));
-	        maximizeButton.setBackground(new Color(0, 0, 204));
+	        maximizeButton.setBackground(new Color(0, 153, 255));
 	        maximizeButton.setForeground(new Color(255, 255, 255));
 	        
 	        JButton closeButton = new JButton("x");
@@ -155,7 +155,7 @@ public class Home extends JFrame {
 	        closeButton.setFocusable(false);
 	        closeButton.setMargin(new Insets(4, 4, 4, 4));
 	        closeButton.setFont(new Font("Tahoma", Font.BOLD, 25));
-	        closeButton.setBackground(new Color(0, 0, 204));
+	        closeButton.setBackground(new Color(0, 153, 255));
 	        closeButton.setForeground(new Color(204, 0, 0));
 	        buttonPanel.setLayout(null);
 	        
@@ -168,7 +168,7 @@ public class Home extends JFrame {
 	        getContentPane().add(titleBar, BorderLayout.NORTH);
 	        
 	        JPanel paneltitle = new JPanel();
-	        paneltitle.setBackground(new Color(0, 0, 204));
+	        paneltitle.setBackground(new Color (0, 153, 255));
 	        titleBar.add(paneltitle, BorderLayout.CENTER);
 	        
 	        JLabel lblNewLabel = new JLabel("Library Management System");
@@ -291,7 +291,7 @@ public class Home extends JFrame {
 	        getContentPane().setLayout(new BorderLayout());
 	        getContentPane().add(sideMenu, BorderLayout.WEST);
 	        getContentPane().add(contentPanel, BorderLayout.CENTER);
-	        setVisible(true);
+	        //setVisible(true);
 	    }
 
 	    
@@ -312,7 +312,8 @@ public class Home extends JFrame {
 
 	    public static void main(String[] args) {
 	    	 SwingUtilities.invokeLater(() -> {
-	             new Home();
+	            Home home = new Home();
+	            home.setVisible(true);
 	         });
 	    }
 	}

@@ -106,11 +106,13 @@ public class Login extends JFrame  {
 	                // Redirect to appropriate frame based on user type
 	                if (userType.equals("Admin")) {
 	                    Home mainFrame = new Home();
-	                    mainFrame.setVisible(true);
+	                    //mainFrame.setUndecorated(true); 
+	                     //mainFrame.setVisible(true);
 	                    dispose();
 	                } else if (userType.equals("Member")) {
 	                	MemberMainFrame mainFrame = new MemberMainFrame();
-	                	mainFrame.setVisible(true);
+	                	//mainFrame.setUndecorated(true);
+	                	//mainFrame.setVisible(true);
 	                    dispose();
 	                } else {
 	                    JOptionPane.showMessageDialog(this, "Unrecognized user type: " + userType, "Login Error", JOptionPane.ERROR_MESSAGE);
@@ -233,7 +235,7 @@ public class Login extends JFrame  {
 		
 		txtUsername = new JTextField();
 		txtUsername.setBackground(new Color(51, 102, 255));
-		txtUsername.setBorder(new MatteBorder(0, 0, 3, 0, (Color) new Color(255, 255, 255)));
+		txtUsername.setBorder(new MatteBorder(0, 0, 2, 0, (Color) new Color(255, 255, 255)));
 		txtUsername.setBounds(151, 33, 157, 30);
 		panel.add(txtUsername);
 		txtUsername.setPreferredSize(new Dimension(150, 30));
@@ -258,7 +260,7 @@ public class Login extends JFrame  {
 		lblForgotPassword.setPreferredSize(new Dimension(150, 30));
 		
 		passwordField = new JPasswordField();
-		passwordField.setBorder(new MatteBorder(0, 0, 3, 0, (Color) new Color(255, 255, 255)));
+		passwordField.setBorder(new MatteBorder(0, 0, 2, 0, (Color) new Color(255, 255, 255)));
 		passwordField.setBackground(new Color(51, 102, 255));
 		passwordField.setBounds(151, 81, 157, 30);
 		panel.add(passwordField);

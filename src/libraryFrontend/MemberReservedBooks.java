@@ -9,6 +9,8 @@ import javax.swing.JSeparator;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
+import libraryBackend.CustomTableCellRenderer;
+import libraryBackend.CustomTableHeaderRenderer;
 import libraryBackend.Reservation;
 import libraryBackend.ReservationManager;
 import libraryBackend.ReservationStatus;
@@ -187,6 +189,9 @@ public class MemberReservedBooks extends JPanel {
 		reservedTableModel.setColumnIdentifiers(new Object[]{"ReservationId","bookId", "Title", "Author", "Start Date", "End Date", "Status"});
 		reservedBookTable = new JTable(reservedTableModel);
 		reservedScrollPane.setViewportView(reservedBookTable);
+		reservedBookTable.setDefaultRenderer(Object.class, new CustomTableCellRenderer());
+		reservedBookTable.getTableHeader().setDefaultRenderer(new CustomTableHeaderRenderer(reservedBookTable));
+        
 		
 		cancelReservation = new RSMaterialButtonRectangle();
 		cancelReservation.setText("cancel reservation  ");

@@ -18,6 +18,9 @@ import javax.swing.JSeparator;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
+import libraryBackend.CustomTableCellRenderer;
+import libraryBackend.CustomTableHeaderRenderer;
+
 public class AvailableBooks extends JPanel {
 
 	private static final long serialVersionUID = 1L;
@@ -106,6 +109,9 @@ public class AvailableBooks extends JPanel {
          model.addColumn("Author");
          model.addColumn("Status");
 		table = new JTable(model);
+		table.setDefaultRenderer(Object.class, new CustomTableCellRenderer());
+		table.getTableHeader().setDefaultRenderer(new CustomTableHeaderRenderer(table));
+        
 		
 		scrollPane.setViewportView(table);
 

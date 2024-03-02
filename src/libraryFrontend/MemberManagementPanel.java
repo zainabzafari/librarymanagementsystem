@@ -24,6 +24,8 @@ import org.mindrot.jbcrypt.BCrypt;
 import java.awt.Color;
 import app.bolivia.swing.JCTextField;
 import javax.swing.border.MatteBorder;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import javax.swing.ImageIcon;
 
 public class MemberManagementPanel extends JPanel {
@@ -42,6 +44,7 @@ public class MemberManagementPanel extends JPanel {
 	private JButton addButton;
 	private JButton deleteButton;
 	private JButton refreshButton;
+	private JButton btnEdit;
 	
 	
 	
@@ -84,10 +87,80 @@ public class MemberManagementPanel extends JPanel {
 	                refreshMemberList();
 	            }
 	        });
+	        
+	        
+	        memberTable.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
+	            @Override
+	            public void valueChanged(ListSelectionEvent e) {
+	                if (!e.getValueIsAdjusting()) {
+	                    int selectedRow = memberTable.getSelectedRow();
+	                    if (selectedRow != -1) {
+	                        String memberId = (String) tableModel.getValueAt(selectedRow, 0);
+	                        Member member = Library.getMemberById(memberId);
+	                        if (member != null) {
+	                            // Populate text fields with member details
+	                            firstNameField.setText(member.getFirstName());
+	                            lastNameField.setText(member.getLastName());
+	                            emailField.setText(member.getEmail());
+	                            phoneNoField.setText(member.getPhoneNo());
+	                            addressField.setText(member.getAddress());
+	                        }
+	                    }
+	                }
+	            }
+	        });
+
 
 	        // Initially refresh the member list
 	        refreshMemberList();
-	    }
+	        
+	        
+	        btnEdit.addActionListener(new ActionListener() {
+	            @Override
+	            public void actionPerformed(ActionEvent e) {
+	                // Step 1: Check if a row is selected in the member table
+	                int selectedRow = memberTable.getSelectedRow();
+	                if (selectedRow == -1) {
+	                    JOptionPane.showMessageDialog(MemberManagementPanel.this, "Please select a member to update", "Error", JOptionPane.ERROR_MESSAGE);
+	                    return;
+	                }
+
+	                // Step 2: Retrieve the member ID from the selected row
+	                String memberId = (String) tableModel.getValueAt(selectedRow, 0);
+
+	               
+
+
+	                // Step 5: Display a dialog allowing the user to modify the member details
+	                int option = JOptionPane.showConfirmDialog(MemberManagementPanel.this, "Do you want to update the member details?", "Confirm", JOptionPane.YES_NO_OPTION);
+	                if (option == JOptionPane.YES_OPTION) {
+	                    // Step 6: Retrieve the updated data from the input fields
+	                    String updatedFirstName = firstNameField.getText();
+	                    String updatedLastName = lastNameField.getText();
+	                    String updatedEmail = emailField.getText();
+	                    String updatedPhoneNo = phoneNoField.getText();
+	                    String updatedAddress = addressField.getText();
+
+	                    // Step 7: Perform validation if necessary
+
+	                    // Step 8: Update the member details in the database
+	                    boolean updateSuccess = Library.updateMember(memberId, updatedFirstName, updatedLastName, updatedEmail, updatedPhoneNo, updatedAddress);
+	                    if (updateSuccess) {
+	                        // Step 9: Show a success message
+	                        JOptionPane.showMessageDialog(MemberManagementPanel.this, "Member details updated successfully");
+	                        // Step 10: Clear the input fields
+	                        clearFields();
+	                        // Step 11: Refresh the member list
+	                        refreshMemberList();
+	                    } else {
+	                        // Step 12: Show an error message if the update fails
+	                        JOptionPane.showMessageDialog(MemberManagementPanel.this, "Failed to update member details", "Error", JOptionPane.ERROR_MESSAGE);
+	                    }
+	                }
+	            }
+	        });
+	    
+	}
 		
 		
 	private void addMember() {
@@ -354,7 +427,7 @@ public class MemberManagementPanel extends JPanel {
 		searchField.setColumns(10);
 		inputPanel.add(searchField);
 		
-		JButton btnEdit = new JButton("Edit");
+		btnEdit = new JButton("Update");
 		btnEdit.setBackground(new Color(0, 153, 255));
 		btnEdit.setPreferredSize(new Dimension(120, 35));
 		btnEdit.setFont(new Font("Serif", Font.PLAIN, 16));
@@ -408,7 +481,7 @@ public class MemberManagementPanel extends JPanel {
         lblNewLabel_1_1.setBounds(536, 12, 65, 71);
         add(lblNewLabel_1_1);
         
-        JLabel lblManageMmbers = new JLabel("Manage Mmbers");
+        JLabel lblManageMmbers = new JLabel("Manage Members");
         lblManageMmbers.setForeground(Color.BLACK);
         lblManageMmbers.setFont(new Font("PMingLiU-ExtB", Font.BOLD, 24));
         lblManageMmbers.setBackground(Color.WHITE);

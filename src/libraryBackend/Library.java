@@ -324,6 +324,91 @@ public class Library {
 		    // If an exception occurs or the query fails, return false by default
 		    return false;
 		}
+	 
+	public static boolean updateMember(String memberId, String firstName, String lastName, String email, String phoneNo, String address) {
+    // Connect to the database and execute the update query
+    try (Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/librarymanagementsystem", "root", "Elias$#22");
+         PreparedStatement statement = connection.prepareStatement("UPDATE member SET firstName = ?, lastName = ?, email = ?, phoneNo = ?, address = ? WHERE memberId = ?")) {
+        statement.setString(1, firstName);
+        statement.setString(2, lastName);
+        statement.setString(3, email);
+        statement.setString(4, phoneNo);
+        statement.setString(5, address);
+        statement.setString(6, memberId);
+        int rowsAffected = statement.executeUpdate();
+        return rowsAffected > 0; // If one or more rows are affected, return true
+    } catch (SQLException e) {
+        e.printStackTrace();
+        return false; // Return false if an exception occurs
+    }
+}
+
+	 public static Member getMemberById(String memberId) {
+		    Member member = null;
+		    // Connect to the database and execute the query to retrieve the member by ID
+		    try (Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/librarymanagementsystem", "root", "Elias$#22");
+		         PreparedStatement statement = connection.prepareStatement("SELECT * FROM member WHERE memberId = ?")) {
+		        statement.setString(1, memberId);
+		        try (ResultSet resultSet = statement.executeQuery()) {
+		            if (resultSet.next()) {
+		                // Create a new Member object using parameterized constructor
+		                member = new Member(
+		                        resultSet.getString("memberId"),
+		                        resultSet.getString("firstName"),
+		                        resultSet.getString("lastName"),
+		                        resultSet.getString("email"),
+		                        resultSet.getString("phoneNo"),
+		                        resultSet.getString("address")
+		                );
+		            }
+		        }
+		    } catch (SQLException e) {
+		        e.printStackTrace();
+		    }
+		    return member; // Return the retrieved Member object or null if no member found
+		}
     
+	 
+	 public static boolean updateBook(int bookId, String Title, String author, String genre, String ISBN) {
+		    // Connect to the database and execute the update query
+		    try (Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/librarymanagementsystem", "root", "Elias$#22");
+		         PreparedStatement statement = connection.prepareStatement("UPDATE book SET Title = ?, author = ?, genre = ?, ISBN = ? WHERE bookId = ?")) {
+		        statement.setString(1, Title);
+		        statement.setString(2, author);
+		        statement.setString(3, genre);
+		        statement.setString(4, ISBN);
+		        statement.setInt(5, bookId);
+		        int rowsAffected = statement.executeUpdate();
+		        return rowsAffected > 0; // If one or more rows are affected, return true
+		    } catch (SQLException e) {
+		        e.printStackTrace();
+		        return false; // Return false if an exception occurs
+		    }
+		}
+
+	 public static Book getBookById(int bookId) {
+				    Book book = null;
+				    // Connect to the database and execute the query to retrieve the member by ID
+				    try (Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/librarymanagementsystem", "root", "Elias$#22");
+				         PreparedStatement statement = connection.prepareStatement("SELECT * FROM book WHERE bookId = ?")) {
+				        statement.setInt(1, bookId);
+				        try (ResultSet resultSet = statement.executeQuery()) {
+				            if (resultSet.next()) {
+				                // Create a new Member object using parameterized constructor
+				                book = new Book(
+				                        resultSet.getInt("bookId"),
+				                        resultSet.getString("title"),
+				                        resultSet.getString("author"),
+				                        resultSet.getString("genre"),
+				                        resultSet.getString("ISBN")
+				                );
+				            }
+				        }
+				    } catch (SQLException e) {
+				        e.printStackTrace();
+				    }
+				    return book; // Return the retrieved Member object or null if no member found
+				}
+		    
 }
 

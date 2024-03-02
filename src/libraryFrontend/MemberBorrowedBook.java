@@ -10,6 +10,8 @@ import javax.swing.table.DefaultTableModel;
 
 import libraryBackend.BorrowedBook;
 import libraryBackend.BorrowedBookStatus;
+import libraryBackend.CustomTableCellRenderer;
+import libraryBackend.CustomTableHeaderRenderer;
 import libraryBackend.DatabaseConnector;
 import libraryBackend.Reservation;
 import libraryBackend.ReservationManager;
@@ -136,7 +138,9 @@ public class MemberBorrowedBook extends JPanel {
 		borrowedTableModel.setColumnIdentifiers(new Object[]{"Transaction Id","Book Id", "Start Date", "End Date", "Status"});
 		borrowedBookTable = new JTable(borrowedTableModel);
 		borrowedScrollPane.setViewportView(borrowedBookTable);
-		
+		borrowedBookTable.setDefaultRenderer(Object.class, new CustomTableCellRenderer());
+		borrowedBookTable.getTableHeader().setDefaultRenderer(new CustomTableHeaderRenderer(borrowedBookTable));
+        
 		
 		
 		extendButton = new RSMaterialButtonRectangle();

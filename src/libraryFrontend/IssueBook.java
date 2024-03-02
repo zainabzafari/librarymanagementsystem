@@ -30,6 +30,8 @@ import java.sql.Statement;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.awt.Dimension;
+import com.toedter.calendar.JDateChooser;
+import java.util.Locale;
 
 public class IssueBook extends JPanel {
 
@@ -42,8 +44,11 @@ public class IssueBook extends JPanel {
 	private JCTextField lastNameField;
 	private JCTextField issueBookField;
 	private JCTextField issueMemberField;
-	private RSDateChooser startDateChooser;
-	private RSDateChooser endDateChooser;
+	//private RSDateChooser startDateChooser;
+	//private RSDateChooser endDateChooser;
+	
+	private JDateChooser startDateChooser;
+	private JDateChooser endDateChooser;
 	private RSMaterialButtonRectangle issueButton;
 
 	/**
@@ -84,7 +89,7 @@ public class IssueBook extends JPanel {
                  
 
                  LocalDate startDate = null;
-                 java.util.Date selectedStartDate = startDateChooser.getDatoFecha(); // Use java.util.Date instead of java.sql.Date
+                 java.util.Date selectedStartDate = startDateChooser.getDate(); // Use java.util.Date instead of java.sql.Date
                  if (selectedStartDate != null) {
                      startDate = selectedStartDate.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
                  } else {
@@ -93,7 +98,7 @@ public class IssueBook extends JPanel {
                  }
 
                  LocalDate endDate = null;
-                 java.util.Date selectedEndDate = endDateChooser.getDatoFecha();
+                 java.util.Date selectedEndDate = endDateChooser.getDate();
                  if (selectedEndDate != null) {
                      endDate = selectedEndDate.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
                  } else {
@@ -142,8 +147,8 @@ public class IssueBook extends JPanel {
 		int issueId =0;
         String bookId = bookIdField.getText();
         String memberId = memberIdField.getText();
-        java.util.Date startDate = startDateChooser.getDatoFecha();
-        java.util.Date endDate = endDateChooser.getDatoFecha();
+        java.util.Date startDate = startDateChooser.getDate();
+        java.util.Date endDate = endDateChooser.getDate();
 
         // Insert into the BorrowedBook table
         try {
@@ -231,8 +236,8 @@ public class IssueBook extends JPanel {
 	    	issueMemberField.setText("");
 	    	
 
-	    	startDateChooser.setDatoFecha(null);
-	    	endDateChooser.setDatoFecha(null);
+	    	startDateChooser.setDate(null);
+	    	endDateChooser.setDate(null);
 	    	
 	     }
 
@@ -450,9 +455,9 @@ public class IssueBook extends JPanel {
 		lblNewLabel_1_2_2.setForeground(Color.WHITE);
 		lblNewLabel_1_2_2.setFont(new Font("Palatino Linotype", Font.PLAIN, 16));
 		panel_2.add(lblNewLabel_1_2_2);
-		
-		startDateChooser = new RSDateChooser();
-		startDateChooser.setBounds(32, 339, 259, 40);
+		/*
+	DateChooser = new RSDateChooser();
+		startDateChooser.setBounds(32, 489, 259, 40);
 		startDateChooser.setPlaceholder("");
 		startDateChooser.setForeground(Color.BLACK);
 		startDateChooser.setFont(new Font("Palatino Linotype", Font.PLAIN, 16));
@@ -464,8 +469,8 @@ public class IssueBook extends JPanel {
 		startDateChooser.setBackground(new Color(255, 255, 255));
 		panel_2.add(startDateChooser);
 		
-		endDateChooser = new RSDateChooser();
-		endDateChooser.setBounds(32, 409, 259, 40);
+		DateChooser = new RSDateChooser();
+		endDateChooser.setBounds(32, 559, 259, 40);
 		endDateChooser.setPlaceholder("");
 		endDateChooser.setFont(new Font("Palatino Linotype", Font.PLAIN, 16));
 		endDateChooser.setComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
@@ -474,7 +479,7 @@ public class IssueBook extends JPanel {
 		endDateChooser.setColorBackground(new Color(0, 0, 255));
 		endDateChooser.setBorder(new MatteBorder(0, 0, 2, 0, (Color) new Color(255, 255, 255)));
 		endDateChooser.setBackground(new Color(255, 255, 255));
-		panel_2.add(endDateChooser);
+		panel_2.add(endDateChooser);*/
 		
 		issueButton = new RSMaterialButtonRectangle();
 		issueButton.setBounds(40, 477, 240, 53);
@@ -493,6 +498,30 @@ public class IssueBook extends JPanel {
 		lblNewLabel_1_2_2_1.setForeground(Color.WHITE);
 		lblNewLabel_1_2_2_1.setFont(new Font("Palatino Linotype", Font.PLAIN, 16));
 		panel_2.add(lblNewLabel_1_2_2_1);
+		
+		startDateChooser = new JDateChooser();
+		startDateChooser.setBorder(new MatteBorder(0, 0, 2, 0, (Color) new Color(0, 51, 255)));
+		startDateChooser.getCalendarButton().setComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
+		startDateChooser.getCalendarButton().setIcon(new ImageIcon(IssueBook.class.getResource("/adminIcons/icons8-desk-calender-30.png")));
+		startDateChooser.getCalendarButton().setBounds(new Rectangle(0, 0, 40, 40));
+		startDateChooser.setLocale(Locale.ENGLISH);
+
+		startDateChooser.setComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
+		startDateChooser.setBackground(new Color(0, 0, 255));
+		startDateChooser.setForeground(new Color(0, 0, 255));
+		startDateChooser.setBounds(32, 342, 259, 35);
+		panel_2.add(startDateChooser);
+		
+		endDateChooser = new JDateChooser();
+		endDateChooser.setBorder(new MatteBorder(0, 0, 2, 0, (Color) new Color(0, 51, 255)));
+		endDateChooser.getCalendarButton().setComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
+		endDateChooser.getCalendarButton().setIcon(new ImageIcon(IssueBook.class.getResource("/adminIcons/icons8-desk-calender-30.png")));
+		endDateChooser.setLocale(Locale.ENGLISH);
+		endDateChooser.setForeground(Color.BLUE);
+		endDateChooser.setComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
+		endDateChooser.setBackground(Color.BLUE);
+		endDateChooser.setBounds(32, 388, 259, 35);
+		panel_2.add(endDateChooser);
 
 	}
 	}

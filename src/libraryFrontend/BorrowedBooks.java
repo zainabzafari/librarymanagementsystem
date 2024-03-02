@@ -16,6 +16,10 @@ import java.sql.SQLException;
 
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+
+import libraryBackend.CustomTableCellRenderer;
+import libraryBackend.CustomTableHeaderRenderer;
+
 import javax.swing.JScrollPane;
 
 public class BorrowedBooks extends JPanel {
@@ -104,6 +108,9 @@ public class BorrowedBooks extends JPanel {
          model.addColumn("Return Date");
          model.addColumn("Status");
 		table = new JTable(model);
+		table.setDefaultRenderer(Object.class, new CustomTableCellRenderer());
+		table.getTableHeader().setDefaultRenderer(new CustomTableHeaderRenderer(table));
+        
 		
 		scrollPane.setViewportView(table);
 

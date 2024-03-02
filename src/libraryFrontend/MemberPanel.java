@@ -5,6 +5,8 @@ import java.awt.Color;
 import app.bolivia.swing.JCTextField;
 import libraryBackend.Book;
 import libraryBackend.BookStatus;
+import libraryBackend.CustomTableCellRenderer;
+import libraryBackend.CustomTableHeaderRenderer;
 import libraryBackend.Library;
 import libraryBackend.Reservation;
 import libraryBackend.ReservationManager;
@@ -44,6 +46,7 @@ import javax.swing.JTable;
 import javax.swing.SwingUtilities;
 
 import rojeru_san.complementos.RSTableMetro;
+import java.util.Locale;
 
 public class MemberPanel extends JPanel {
 
@@ -58,8 +61,8 @@ public class MemberPanel extends JPanel {
 	private JCTextField bookIdField;
 	private JCTextField bookTitleField;
 	private JCTextField bookAuthorField;
-	private RSDateChooser startDateChooser;
-	private RSDateChooser endDateChooser;
+	private JDateChooser startDateChooser;
+	private JDateChooser endDateChooser;
 	private RSMaterialButtonRectangle reserveButton;
 	private RSMaterialButtonRectangle extendButton;
 	private RSMaterialButtonRectangle lostButton;
@@ -128,8 +131,8 @@ public class MemberPanel extends JPanel {
 	    String username = SessionManager.getCurrentUsername();
 	    int memberId = SessionManager.getCurrentMemberId(username);
 	    int bookId = Integer.parseInt(bookIdField.getText());
-	    LocalDate startDate = startDateChooser.getDatoFecha().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-	    LocalDate endDate = endDateChooser.getDatoFecha().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+	    LocalDate startDate = startDateChooser.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+	    LocalDate endDate = endDateChooser.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
 	    String title = bookTitleField.getText();
 	    String author = bookAuthorField.getText();
 
@@ -139,10 +142,7 @@ public class MemberPanel extends JPanel {
     boolean success = reservationManager.reserveBook(memberId, bookId, title, author, startDate, endDate);
     if (success) {
         JOptionPane.showMessageDialog(null, "You Reserved the Book Successfully!");
-       // reservedbooks.loadData(); // Load updated reservations into the table view
-        
-            //	reservedbooks.repaint();
-            	//reservedbooks.revalidate();
+   
            
 
     }
@@ -150,29 +150,6 @@ public class MemberPanel extends JPanel {
 
 	
 	
-	/* protected void reserveBook() {
-		 String username = SessionManager.getCurrentUsername(); // Assuming you have a method to get the current username
-		    int memberId = SessionManager.getCurrentMemberId(username);
-		 
-	        int bookId = Integer.parseInt(bookIdField.getText());
-	        LocalDate startDate = startDateChooser.getDatoFecha().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-	        LocalDate endDate = endDateChooser.getDatoFecha().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-	        String title = bookTitleField.getText();
-	        String author = bookAuthorField.getText();
-
-	        // Reserve the book
-	        ReservationManager reservationManager = new ReservationManager();
-	        boolean success = reservationManager.reserveBook(memberId, bookId, title, author, startDate, endDate);
-	        if (success) {
-	            // Update reserved book table
-	        	/* List<Reservation> reservations = reservationManager.getReservationsForCurrentMember(memberId);
-	        	 MemberReservedBooks reservedbooks = new MemberReservedBooks();
-	        	 reservedbooks.updateTableView(reservations);
-	        	 
-	        	 JOptionPane.showMessageDialog(null, "You Reserved the Book Successfully!");
-	         }
-		
-	}*/
 
 	
 	private void addActionListeners() {
@@ -313,30 +290,7 @@ public class MemberPanel extends JPanel {
 		lblNewLabel_1_2.setBounds(20, 180, 47, 39);
 		panel.add(lblNewLabel_1_2);
 		
-		startDateChooser = new RSDateChooser();
-		startDateChooser.setForeground(new Color(0, 0, 0));
-		startDateChooser.setPlaceholder("");
-		startDateChooser.setColorSelForeground(new Color(0, 102, 255));
-		startDateChooser.setColorTextDiaActual(new Color(0, 102, 255));
-		startDateChooser.setColorBackground(new Color(0, 102, 255));
-		startDateChooser.setBorder(new MatteBorder(0, 0, 2, 0, (Color) new Color(255, 255, 255)));
-		startDateChooser.setBackground(new Color(0, 102, 255));
-		startDateChooser.setFont(new Font("Palatino Linotype", Font.PLAIN, 16));
-		startDateChooser.setComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
-		startDateChooser.setBounds(32, 338, 259, 40);
-		panel.add(startDateChooser);
 		
-		endDateChooser = new RSDateChooser();
-		endDateChooser.setPlaceholder("");
-		endDateChooser.setFont(new Font("Palatino Linotype", Font.PLAIN, 16));
-		endDateChooser.setComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
-		endDateChooser.setColorTextDiaActual(new Color(0, 102, 255));
-		endDateChooser.setColorSelForeground(new Color(0, 102, 255));
-		endDateChooser.setColorBackground(new Color(0, 102, 255));
-		endDateChooser.setBorder(new MatteBorder(0, 0, 2, 0, (Color) new Color(255, 255, 255)));
-		endDateChooser.setBackground(new Color(0, 102, 255));
-		endDateChooser.setBounds(32, 409, 259, 40);
-		panel.add(endDateChooser);
 		
 		reserveButton = new RSMaterialButtonRectangle();
 		reserveButton.setText("Reserve");
@@ -355,6 +309,41 @@ public class MemberPanel extends JPanel {
 		lostButton.setBackground(new Color(102, 204, 255));
 		lostButton.setBounds(167, 541, 136, 53);
 		panel.add(lostButton);
+		
+		endDateChooser = new JDateChooser();
+		endDateChooser.getCalendarButton().setIcon(new ImageIcon(MemberPanel.class.getResource("/adminIcons/icons8-desk-calender-30.png")));
+		endDateChooser.getCalendarButton().setComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
+		endDateChooser.setLocale(Locale.ENGLISH);
+		endDateChooser.setForeground(Color.BLUE);
+		endDateChooser.setComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
+		endDateChooser.setBorder(new MatteBorder(0, 0, 2, 0, (Color) new Color(0, 51, 255)));
+		endDateChooser.setBackground(new Color(0, 102, 255));
+		endDateChooser.setBounds(31, 431, 259, 35);
+		panel.add(endDateChooser);
+		
+		startDateChooser = new JDateChooser();
+		startDateChooser.getCalendarButton().setIcon(new ImageIcon(MemberPanel.class.getResource("/adminIcons/icons8-desk-calender-30.png")));
+		startDateChooser.getCalendarButton().setComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
+		startDateChooser.getCalendarButton().setBounds(new Rectangle(0, 0, 40, 40));
+		startDateChooser.setLocale(Locale.ENGLISH);
+		startDateChooser.setForeground(Color.BLUE);
+		startDateChooser.setComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
+		startDateChooser.setBorder(new MatteBorder(0, 0, 2, 0, (Color) new Color(0, 51, 255)));
+		startDateChooser.setBackground(new Color(0, 102, 255));
+		startDateChooser.setBounds(31, 357, 259, 35);
+		panel.add(startDateChooser);
+		
+		JLabel lblNewLabel_3_1 = new JLabel("Start Date:");
+		lblNewLabel_3_1.setForeground(Color.WHITE);
+		lblNewLabel_3_1.setFont(new Font("Palatino Linotype", Font.PLAIN, 16));
+		lblNewLabel_3_1.setBounds(31, 329, 136, 27);
+		panel.add(lblNewLabel_3_1);
+		
+		JLabel lblNewLabel_3_1_1 = new JLabel("End Date:");
+		lblNewLabel_3_1_1.setForeground(Color.WHITE);
+		lblNewLabel_3_1_1.setFont(new Font("Palatino Linotype", Font.PLAIN, 16));
+		lblNewLabel_3_1_1.setBounds(31, 403, 136, 27);
+		panel.add(lblNewLabel_3_1_1);
 		
 		JPanel panel_1 = new JPanel();
 		panel_1.setBackground(new Color(255, 255, 255));
@@ -388,6 +377,9 @@ public class MemberPanel extends JPanel {
  		panel_1.add(searchScrollPane);
  		
          searchBookTable = new JTable(tableModel);
+         searchBookTable.setDefaultRenderer(Object.class, new CustomTableCellRenderer());
+         searchBookTable.getTableHeader().setDefaultRenderer(new CustomTableHeaderRenderer(searchBookTable));
+         
  		 searchScrollPane.setViewportView(searchBookTable);
 		
 

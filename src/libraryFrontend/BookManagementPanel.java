@@ -17,6 +17,7 @@ import javax.swing.table.DefaultTableModel;
 
 import libraryBackend.Book;
 import libraryBackend.Library;
+import libraryBackend.Member;
 import libraryBackend.CustomTableCellRenderer;
 import libraryBackend.CustomTableHeaderRenderer;
 
@@ -37,6 +38,8 @@ import javax.swing.JOptionPane;
 import javax.swing.JList;
 import app.bolivia.swing.JCTextField;
 import javax.swing.border.MatteBorder;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import javax.swing.ImageIcon;
 import javax.swing.JSeparator;
 
@@ -51,6 +54,7 @@ public class BookManagementPanel extends JPanel {
     private JTextField searchField;
     private JTable table;
     private JTable bookTable;
+    private JButton updateButton;
 
 	/**
 	 * Create the panel.
@@ -99,6 +103,74 @@ public class BookManagementPanel extends JPanel {
 	            	 refreshBookList();
 	            }
 	        });
+	        
+	        
+	        
+	        bookTable.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
+	            @Override
+	            public void valueChanged(ListSelectionEvent e) {
+	                if (!e.getValueIsAdjusting()) {
+	                    int selectedRow = bookTable.getSelectedRow();
+	                    if (selectedRow != -1) {
+	                        int bookId = (int) tableModel.getValueAt(selectedRow, 0);
+	                        Book book = Library.getBookById(bookId);
+	                        if (book != null) {
+	                            // Populate text fields with member details
+	                        	titleField.setText(book.getTitle());
+	                        	authorField.setText(book.getAuthor());
+	                        	genreField.setText(book.getGenre());
+	                        	isbnField.setText(book.getGenre());
+	                        }
+	                    }
+	                }
+	            }
+	        });
+
+	        updateButton.addActionListener(new ActionListener() {
+	            @Override
+	            public void actionPerformed(ActionEvent e) {
+	                // Step 1: Check if a row is selected in the member table
+	                int selectedRow = bookTable.getSelectedRow();
+	                if (selectedRow == -1) {
+	                    JOptionPane.showMessageDialog(BookManagementPanel.this, "Please select a book to update", "Error", JOptionPane.ERROR_MESSAGE);
+	                    return;
+	                }
+
+	                // Step 2: Retrieve the member ID from the selected row
+	                int bookId = (int) tableModel.getValueAt(selectedRow, 0);
+
+	               
+
+
+	                // Step 5: Display a dialog allowing the user to modify the member details
+	                int option = JOptionPane.showConfirmDialog(BookManagementPanel.this, "Do you want to update the book details?", "Confirm", JOptionPane.YES_NO_OPTION);
+	                if (option == JOptionPane.YES_OPTION) {
+	                    // Step 6: Retrieve the updated data from the input fields
+	                	
+	                    String updatedTitle = titleField.getText();
+	                    String updatedAuthor = authorField.getText();
+	                    String updatedAutor = genreField.getText();
+	                    String updatedISBN = isbnField.getText();
+
+	                    // Step 7: Perform validation if necessary
+
+	                    // Step 8: Update the member details in the database
+	                    boolean updateSuccess = Library.updateBook(bookId, updatedTitle, updatedAuthor, updatedAutor, updatedISBN);
+	                    if (updateSuccess) {
+	                        // Step 9: Show a success message
+	                        JOptionPane.showMessageDialog(BookManagementPanel.this, "Book details updated successfully");
+	                        // Step 10: Clear the input fields
+	                        clearTextFields();
+	                        // Step 11: Refresh the member list
+	                        refreshBookList();
+	                    } else {
+	                        // Step 12: Show an error message if the update fails
+	                        JOptionPane.showMessageDialog(BookManagementPanel.this, "Failed to update book details", "Error", JOptionPane.ERROR_MESSAGE);
+	                    }
+	                }
+	            }
+	        });
+	    
 	    }
 	
 
@@ -365,14 +437,14 @@ public class BookManagementPanel extends JPanel {
          lblNewLabel_1.setBounds(25, 11, 61, 71);
          inputPanel.add(lblNewLabel_1);
          
-         JButton refreshButton_1 = new JButton("Refresh");
-         refreshButton_1.setBounds(new Rectangle(0, 0, 100, 30));
-         refreshButton_1.setPreferredSize(new Dimension(100, 30));
-         refreshButton_1.setForeground(Color.WHITE);
-         refreshButton_1.setFont(new Font("Yu Gothic Medium", Font.PLAIN, 14));
-         refreshButton_1.setBackground(new Color(0, 153, 255));
-         refreshButton_1.setBounds(187, 427, 115, 30);
-         inputPanel.add(refreshButton_1);
+         updateButton = new JButton("Update");
+         updateButton.setBounds(new Rectangle(0, 0, 100, 30));
+         updateButton.setPreferredSize(new Dimension(100, 30));
+         updateButton.setForeground(Color.WHITE);
+         updateButton.setFont(new Font("Yu Gothic Medium", Font.PLAIN, 14));
+         updateButton.setBackground(new Color(0, 153, 255));
+         updateButton.setBounds(187, 427, 115, 30);
+         inputPanel.add(updateButton);
          
          JScrollPane tableScrollPane = new JScrollPane();
          tableScrollPane.setBackground(new Color(255, 255, 255));
