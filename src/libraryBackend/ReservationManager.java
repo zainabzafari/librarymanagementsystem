@@ -16,11 +16,6 @@ import javax.swing.JOptionPane;
 public class ReservationManager {
 	
 	
-
-    private static final String DB_URL = "jdbc:mysql://localhost:3306/LibraryManagementSystem";
-    private static final String DB_USER = "root";
-    private static final String DB_PASSWORD = "Elias$#22";
-    
     
     
     // Method to reserve a book
@@ -69,7 +64,7 @@ public class ReservationManager {
 	  
     private  int createReservation(int memberId, int bookId, String title, String author,LocalDate startDate, LocalDate endDate) {
     	int reservationId = 0; 
-    	try (Connection connection = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD)) {
+    	try (Connection connection = DatabaseConnector.getConnection()) {
     	        String sql = "INSERT INTO Reservation (MemberId, BookId, title, author, startDate, endDate, Status) VALUES (?, ?, ?, ?, ?,?,?)";
     	        PreparedStatement statement = connection.prepareStatement(sql,Statement.RETURN_GENERATED_KEYS);
     	        statement.setInt(1, memberId);
@@ -98,7 +93,7 @@ public class ReservationManager {
 
     private static boolean isBookReserved(int bookId, LocalDate startDate, LocalDate endDate) {
     	boolean isreserved = false;
-    	try (Connection connection = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD)) {
+    	try (Connection connection = DatabaseConnector.getConnection()) {
     	
          
     		
@@ -139,7 +134,7 @@ public class ReservationManager {
  // Method to check if the book is available during the specified period
     public boolean isBookAvailable(int bookId, LocalDate startDate, LocalDate endDate) {
     	boolean isBookavailable = true;
-    	try (Connection connection = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD)) {
+    	try (Connection connection = DatabaseConnector.getConnection()) {
     		 String sql = "SELECT COUNT(*) FROM Borrowedbook WHERE BookId = ? AND Status = ? AND ((? BETWEEN startDate AND returnDate) OR (? BETWEEN startDate AND returnDate) OR (startDate BETWEEN ? AND ?) OR (returnDate BETWEEN ? AND ?))";
              
     		//String sql = "SELECT COUNT(*) FROM BorrowedBook WHERE BookId = ? AND Status = ? AND startDate >= ? AND returnDate <= ? ";
@@ -178,7 +173,7 @@ public class ReservationManager {
     
     public boolean isBookReservedByOtherMember(int bookId, int memberId, LocalDate startDate, LocalDate endDate) {
     	boolean isreserved = false;
-    	try (Connection connection = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD)) {
+    	try (Connection connection = DatabaseConnector.getConnection()) {
     	
          
             String sql = "SELECT COUNT(*) FROM Reservation WHERE BookId = ? AND memberId != ? AND Status=? AND ((? BETWEEN startDate AND endDate) OR (? BETWEEN startDate AND endDate) OR (startDate BETWEEN ? AND ?) OR (endDate BETWEEN ? AND ?)) ?";
@@ -223,7 +218,7 @@ public class ReservationManager {
     	int reservationId = -1;
     	
        
-    	try (Connection connection = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD)) {
+    	try (Connection connection = DatabaseConnector.getConnection()) {
     	    
          
             String sql = "SELECT reservationId FROM Reservation WHERE BookId = ? AND memberId = ? AND Status = ? AND ((? BETWEEN startDate AND endDate) OR (? BETWEEN startDate AND endDate) OR (startDate BETWEEN ? AND ?) OR (endDate BETWEEN ? AND ?))";
@@ -257,7 +252,7 @@ public class ReservationManager {
     	}
         
     private static boolean hasOverdueBooks(int memberId) {
-        try (Connection connection = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD)) {
+        try (Connection connection = DatabaseConnector.getConnection()) {
             String sql = "SELECT COUNT(*) FROM BorrowedBook WHERE MemberId = ? AND ReturnDate < ?";
             PreparedStatement statement = connection.prepareStatement(sql);
             statement.setInt(1, memberId);
@@ -276,7 +271,7 @@ public class ReservationManager {
 
     // Method to update the book status in the database
     public void updateBookStatus(int bookId, BookStatus status) {
-        try (Connection connection = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD)) {
+        try (Connection connection = DatabaseConnector.getConnection()) {
             String sql = "UPDATE Book SET Status = ? WHERE BookId = ?";
             PreparedStatement statement = connection.prepareStatement(sql);
             statement.setString(1, status.name());
@@ -296,7 +291,7 @@ public class ReservationManager {
     
     
     public void updateReservationStatus(int bookId, int reservationId, ReservationStatus status) {
-        try (Connection connection = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD)) {
+        try (Connection connection = DatabaseConnector.getConnection()) {
             String sql = "UPDATE Reservation SET Status = ? WHERE BookId = ? AND ReservationId = ?";
             PreparedStatement statement = connection.prepareStatement(sql);
             statement.setString(1, status.name());
@@ -316,7 +311,7 @@ public class ReservationManager {
     }
     
     public void updateBorrowedStatus(int bookId, BorrowedBookStatus status) {
-        try (Connection connection = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD)) {
+        try (Connection connection = DatabaseConnector.getConnection()) {
             String sql = "UPDATE BorrowedBook SET Status = ? WHERE BookId = ?";
             PreparedStatement statement = connection.prepareStatement(sql);
             statement.setString(1, status.name());
@@ -337,7 +332,7 @@ public class ReservationManager {
     }
 
     private static boolean isValidMember(int memberId) {
-        try (Connection connection = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD)) {
+        try (Connection connection = DatabaseConnector.getConnection()) {
             String sql = "SELECT COUNT(*) FROM Member WHERE MemberId = ?";
             PreparedStatement statement = connection.prepareStatement(sql);
             statement.setInt(1, memberId);
@@ -354,7 +349,7 @@ public class ReservationManager {
     }
 
     private static boolean isValidBook(int bookId) {
-        try (Connection connection = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD)) {
+        try (Connection connection = DatabaseConnector.getConnection()) {
             String sql = "SELECT COUNT(*) FROM Book WHERE BookId = ?";
             PreparedStatement statement = connection.prepareStatement(sql);
             statement.setInt(1, bookId);
@@ -372,7 +367,7 @@ public class ReservationManager {
 
     public List<Reservation> getReservationsForCurrentMember(int memberId) {
         List<Reservation> reservations = new ArrayList<>();
-        try (Connection connection = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD)) {
+        try (Connection connection = DatabaseConnector.getConnection()) {
             String sql = "SELECT * FROM Reservation WHERE MemberId = ?";
             PreparedStatement statement = connection.prepareStatement(sql);
             statement.setInt(1, memberId);

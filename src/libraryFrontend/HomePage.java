@@ -2,6 +2,7 @@ package libraryFrontend;
 
 import javax.swing.JPanel;
 
+import libraryBackend.DatabaseConnector;
 
 import java.awt.Dimension;
 import java.awt.Color;
@@ -36,7 +37,7 @@ public class HomePage extends JPanel {
 	
     private void updateLabels() {
     	
-        try (Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/LibraryManagementSystem", "root", "Elias$#22");) {
+        try (Connection connection = DatabaseConnector.getConnection();) {
             // Query for counting books with different statuses
             String sqlAvailable = "SELECT COUNT(*) FROM Book WHERE Status = 'AVAILABLE'";
             String sqlIssued = "SELECT COUNT(*) FROM Book WHERE Status = 'CHECKED_OUT'";

@@ -53,20 +53,7 @@ public class Home extends JFrame {
 	        setSize(1100, 600);
 	        setLocationRelativeTo(null);
 	        
-	        
 	       
-	        // Create custom title bar panel
-	     /*  titleBar = new JPanel(new BorderLayout()) {
-	    	   @Override
-	            public Dimension getPreferredSize() {
-	                if (isMaximized) {
-	                    return new Dimension(Toolkit.getDefaultToolkit().getScreenSize().width, 60);
-	                } else {
-	                    return new Dimension(Toolkit.getDefaultToolkit().getScreenSize().width, 50);
-	                }
-	            }
-	        };*/
-	        
 	        
 	        titleBar = new JPanel(new BorderLayout());
 	        titleBar.setBackground(new Color (0, 153, 255));

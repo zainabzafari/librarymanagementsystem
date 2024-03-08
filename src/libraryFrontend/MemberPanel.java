@@ -52,10 +52,6 @@ public class MemberPanel extends JPanel {
 
 	private static final long serialVersionUID = 1L;
 
-	    private static final String DB_URL = "jdbc:mysql://localhost:3306/LibraryManagementSystem";
-	    private static final String DB_USER = "root";
-	    private static final String DB_PASSWORD = "Elias$#22";  
-	    
 	    
 	private JPanel panel;
 	private JCTextField bookIdField;
@@ -81,9 +77,6 @@ public class MemberPanel extends JPanel {
 	 */
 	public MemberPanel() {
 		
-
-     //MemberReservedBooks reservedBooks = new MemberReservedBooks();
-
 
 		
 		

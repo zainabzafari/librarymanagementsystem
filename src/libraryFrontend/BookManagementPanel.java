@@ -55,6 +55,8 @@ public class BookManagementPanel extends JPanel {
     private JTable table;
     private JTable bookTable;
     private JButton updateButton;
+    
+    private Library library;
 
 	/**
 	 * Create the panel.
@@ -490,6 +492,16 @@ public class BookManagementPanel extends JPanel {
          
 		
 	}
+
+
+	public void setLibrary(Library library) {
+        this.library = library;
+    }
+
+    public Library getLibrary() {
+        return library;
+    }
+
 	    }
 	
 

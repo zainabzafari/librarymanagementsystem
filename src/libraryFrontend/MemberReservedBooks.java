@@ -11,6 +11,7 @@ import javax.swing.table.DefaultTableModel;
 
 import libraryBackend.CustomTableCellRenderer;
 import libraryBackend.CustomTableHeaderRenderer;
+import libraryBackend.DatabaseConnector;
 import libraryBackend.Reservation;
 import libraryBackend.ReservationManager;
 import libraryBackend.ReservationStatus;
@@ -34,10 +35,7 @@ public class MemberReservedBooks extends JPanel {
 
 	private static final long serialVersionUID = 1L;
 	
-	 private static final String DB_URL = "jdbc:mysql://localhost:3306/LibraryManagementSystem";
-	    private static final String DB_USER = "root";
-	    private static final String DB_PASSWORD = "Elias$#22";  
-	    
+	
 	DefaultTableModel reservedTableModel;
 	JTable reservedBookTable;
 	JScrollPane reservedScrollPane;
@@ -68,7 +66,6 @@ public class MemberReservedBooks extends JPanel {
                         "Cancel Reservation", JOptionPane.YES_NO_OPTION);
                 if (option == JOptionPane.YES_OPTION) {
                     int reservationId = (int)reservedTableModel.getValueAt(selectedRow, 0); // Assuming reservationId is in column 0
-                    //ReservationManager reservationManager = new ReservationManager();
                     cancelReservation(reservationId);
                     removeReservationFromTable(selectedRow);
                 }
@@ -96,7 +93,7 @@ public class MemberReservedBooks extends JPanel {
 		
 	
 	public boolean cancelReservation(int reservationId) {
-	    try (Connection connection = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD)) {
+	    try (Connection connection = DatabaseConnector.getConnection()) {
 	        // Get the bookId associated with the canceled reservation
 	        String getBookIdSql = "SELECT BookId FROM Reservation WHERE ReservationId = ?";
 	        PreparedStatement getBookIdStatement = connection.prepareStatement(getBookIdSql);
@@ -145,7 +142,7 @@ public class MemberReservedBooks extends JPanel {
 	}
 
 	
-	protected void loadData() {
+	public void loadData() {
         String username = SessionManager.getCurrentUsername();
         int memberId = SessionManager.getCurrentMemberId(username);
         ReservationManager reservationManager = new ReservationManager();

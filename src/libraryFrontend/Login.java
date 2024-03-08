@@ -25,6 +25,7 @@ import javax.swing.border.TitledBorder;
 
 import org.mindrot.jbcrypt.BCrypt;
 
+import libraryBackend.DatabaseConnector;
 import libraryBackend.SessionManager;
 import libraryBackend.UserAuthentication;
 import javax.swing.JPasswordField;
@@ -37,7 +38,7 @@ public class Login extends JFrame  {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
-	private JTextField txtUsername;
+	JTextField txtUsername;
 	private JPasswordField passwordField;
 	private JButton btnLogin;
 
@@ -81,7 +82,7 @@ public class Login extends JFrame  {
 		
 	
 	
-	private void authenticateUser() {
+	public void authenticateUser() {
 	    String username = txtUsername.getText();
 	    String password = new String(passwordField.getPassword());
 	    
@@ -136,11 +137,11 @@ public class Login extends JFrame  {
 	}
 	
 	
-	private String getHashedPasswordFromDB(String username) {
+	public String getHashedPasswordFromDB(String username) {
     String hashedPassword = null;
     
     String query = "SELECT Password FROM UserCredentials WHERE Username = ?";
-    try (Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/LibraryManagementSystem", "root", "Elias$#22");
+    try (Connection connection = DatabaseConnector.getConnection();
          PreparedStatement preparedStatement = connection.prepareStatement(query)) {
         preparedStatement.setString(1, username);
         ResultSet resultSet = preparedStatement.executeQuery();
@@ -155,11 +156,11 @@ public class Login extends JFrame  {
 }
 
 
-	private int getCurrentMemberId(String username, String password) {
+	public int getCurrentMemberId(String username, String password) {
 	    int memberId = 0;
 	    
 	    String query = "SELECT MemberId FROM UserCredentials WHERE BINARY Username = ? AND BINARY Password = ?";
-	    try (Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/LibraryManagementSystem", "root", "Elias$#22");
+	    try (Connection connection = DatabaseConnector.getConnection();
 	         PreparedStatement preparedStatement = connection.prepareStatement(query)) {
 	        preparedStatement.setString(1, username);
 	        preparedStatement.setString(2, password);
@@ -175,11 +176,11 @@ public class Login extends JFrame  {
 	    
 	}
 
-	private String getUserType(String username, String password) {
+	public String getUserType(String username, String password) {
 	    String userType = null;
 	    
 	    String query = "SELECT UserType FROM UserCredentials WHERE BINARY Username = ? AND BINARY Password = ?";
-	    try (Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/LibraryManagementSystem", "root", "Elias$#22");
+	    try (Connection connection = DatabaseConnector.getConnection();
 	         PreparedStatement preparedStatement = connection.prepareStatement(query)) {
 	        preparedStatement.setString(1, username);
 	        preparedStatement.setString(2, password);

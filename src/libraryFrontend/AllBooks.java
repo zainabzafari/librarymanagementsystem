@@ -20,6 +20,7 @@ import javax.swing.table.DefaultTableModel;
 
 import libraryBackend.CustomTableCellRenderer;
 import libraryBackend.CustomTableHeaderRenderer;
+import libraryBackend.DatabaseConnector;
 
 public class AllBooks extends JPanel {
 
@@ -44,7 +45,7 @@ public class AllBooks extends JPanel {
 
         try {
 
-            Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/LibraryManagementSystem", "root", "Elias$#22");
+            Connection connection = DatabaseConnector.getConnection();
            
              String query = "SELECT * FROM Book";
              PreparedStatement stmt = connection.prepareStatement(query);

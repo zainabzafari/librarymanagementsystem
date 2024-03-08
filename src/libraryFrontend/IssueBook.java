@@ -5,6 +5,7 @@ import java.awt.Color;
 import app.bolivia.swing.JCTextField;
 import libraryBackend.BookStatus;
 import libraryBackend.BorrowedBookStatus;
+import libraryBackend.DatabaseConnector;
 import libraryBackend.ReservationManager;
 import libraryBackend.ReservationStatus;
 
@@ -44,8 +45,6 @@ public class IssueBook extends JPanel {
 	private JCTextField lastNameField;
 	private JCTextField issueBookField;
 	private JCTextField issueMemberField;
-	//private RSDateChooser startDateChooser;
-	//private RSDateChooser endDateChooser;
 	
 	private JDateChooser startDateChooser;
 	private JDateChooser endDateChooser;
@@ -152,7 +151,7 @@ public class IssueBook extends JPanel {
 
         // Insert into the BorrowedBook table
         try {
-            Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/LibraryManagementSystem", "root", "Elias$#22");
+            Connection connection = DatabaseConnector.getConnection();
             String sql = "INSERT INTO BorrowedBook (bookId, memberId, startDate, returnDate) VALUES (?, ?, ?, ?)";
             PreparedStatement statement = connection.prepareStatement(sql,Statement.RETURN_GENERATED_KEYS);
             statement.setString(1, bookId);
@@ -179,7 +178,7 @@ public class IssueBook extends JPanel {
 	
 	 private void getBookDetails(String bookId) {
 	        try {
-	            Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/LibraryManagementSystem", "root", "Elias$#22");
+	            Connection connection = DatabaseConnector.getConnection();
 	            String sql = "SELECT Title, Author FROM Book WHERE bookId = ?";
 	            PreparedStatement statement = connection.prepareStatement(sql);
 	            statement.setString(1, bookId);
@@ -204,7 +203,7 @@ public class IssueBook extends JPanel {
 	    // Method to fetch member details from the database
 	    private void getMemberDetails(String memberId) {
 	        try {
-	            Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/LibraryManagementSystem", "root", "Elias$#22");
+	            Connection connection = DatabaseConnector.getConnection();
 	            String sql = "SELECT FirstName, LastName FROM Member WHERE MemberId = ?";
 	            PreparedStatement statement = connection.prepareStatement(sql);
 	            statement.setString(1, memberId);
@@ -455,32 +454,8 @@ public class IssueBook extends JPanel {
 		lblNewLabel_1_2_2.setForeground(Color.WHITE);
 		lblNewLabel_1_2_2.setFont(new Font("Palatino Linotype", Font.PLAIN, 16));
 		panel_2.add(lblNewLabel_1_2_2);
-		/*
-	DateChooser = new RSDateChooser();
-		startDateChooser.setBounds(32, 489, 259, 40);
-		startDateChooser.setPlaceholder("");
-		startDateChooser.setForeground(Color.BLACK);
-		startDateChooser.setFont(new Font("Palatino Linotype", Font.PLAIN, 16));
-		startDateChooser.setComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
-		startDateChooser.setColorTextDiaActual(new Color(0, 102, 255));
-		startDateChooser.setColorSelForeground(new Color(0, 102, 255));
-		startDateChooser.setColorBackground(new Color(0, 0, 255));
-		startDateChooser.setBorder(new MatteBorder(0, 0, 2, 0, (Color) new Color(255, 255, 255)));
-		startDateChooser.setBackground(new Color(255, 255, 255));
-		panel_2.add(startDateChooser);
 		
-		DateChooser = new RSDateChooser();
-		endDateChooser.setBounds(32, 559, 259, 40);
-		endDateChooser.setPlaceholder("");
-		endDateChooser.setFont(new Font("Palatino Linotype", Font.PLAIN, 16));
-		endDateChooser.setComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
-		endDateChooser.setColorTextDiaActual(new Color(0, 102, 255));
-		endDateChooser.setColorSelForeground(new Color(0, 102, 255));
-		endDateChooser.setColorBackground(new Color(0, 0, 255));
-		endDateChooser.setBorder(new MatteBorder(0, 0, 2, 0, (Color) new Color(255, 255, 255)));
-		endDateChooser.setBackground(new Color(255, 255, 255));
-		panel_2.add(endDateChooser);*/
-		
+
 		issueButton = new RSMaterialButtonRectangle();
 		issueButton.setBounds(40, 477, 240, 53);
 		issueButton.setText("Issue Book");

@@ -10,16 +10,11 @@ import java.util.List;
 
 public class Library {
 	
-	
-	
-    private static final String DB_URL = "jdbc:mysql://localhost:3306/LibraryManagementSystem";
-    private static final String DB_USER = "root";
-    private static final String DB_PASSWORD = "Elias$#22";
 
     // Add a new book to the database
     public static boolean addBook( String title, String author, String genre, String isbn) {
-        try (Connection connection = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD)) {
-        	 String sql = "INSERT INTO Book (Title, Author, Genre, ISBN, Status) VALUES (?, ?, ?, ?, ?)";
+        try (Connection connection = DatabaseConnector.getConnection()) {
+        	String sql = "INSERT INTO Book (Title, Author, Genre, ISBN, Status) VALUES (?, ?, ?, ?, ?)";
             PreparedStatement statement = connection.prepareStatement(sql);
             statement.setString(1, title);
             statement.setString(2, author);
@@ -37,23 +32,29 @@ public class Library {
 
     // Delete a book from the database
     public static boolean deleteBook(int bookId) {
-        try (Connection connection = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD)) {
+    	
+        try (Connection connection = DatabaseConnector.getConnection()) {
             String sql = "DELETE FROM Book WHERE bookId = ?";
             PreparedStatement statement = connection.prepareStatement(sql);
             statement.setInt(1, bookId);
 
             int rowsDeleted = statement.executeUpdate();
-            return rowsDeleted > 0;
+            
+            if (rowsDeleted > 0) {
+            	return true;
+            }
         } catch (SQLException ex) {
             ex.printStackTrace();
-            return false;
+            
         }
+		return false;
+        
     }
 
     // Search for books in the database
     public static List<Book> searchBooks(String keyword) {
         List<Book> books = new ArrayList<>();
-        try (Connection connection = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD)) {
+        try (Connection connection = DatabaseConnector.getConnection()) {
             String sql = "SELECT * FROM Book WHERE Title LIKE ? OR Author LIKE ? OR Genre LIKE ? OR ISBN LIKE ?";
             PreparedStatement statement = connection.prepareStatement(sql);
             String searchKeyword = "%" + keyword + "%";
@@ -84,7 +85,7 @@ public class Library {
     public static List<Book> getAllBooks() {
         List<Book> books = new ArrayList<>();
 
-        try (Connection connection = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD)) {
+        try (Connection connection = DatabaseConnector.getConnection()) {
             String sql = "SELECT * FROM Book";
             PreparedStatement statement = connection.prepareStatement(sql);
             ResultSet resultSet = statement.executeQuery();
@@ -307,7 +308,7 @@ public class Library {
 		}
 
 	 public static boolean isISBNUnique(String isbn) {
-		    try (Connection connection = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD)) {
+		    try (Connection connection = DatabaseConnector.getConnection()) {
 		        String sql = "SELECT COUNT(*) AS count FROM Book WHERE isbn = ?";
 		        PreparedStatement statement = connection.prepareStatement(sql);
 		        statement.setString(1, isbn);
@@ -327,7 +328,7 @@ public class Library {
 	 
 	public static boolean updateMember(String memberId, String firstName, String lastName, String email, String phoneNo, String address) {
     // Connect to the database and execute the update query
-    try (Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/librarymanagementsystem", "root", "Elias$#22");
+    try (Connection connection = DatabaseConnector.getConnection();
          PreparedStatement statement = connection.prepareStatement("UPDATE member SET firstName = ?, lastName = ?, email = ?, phoneNo = ?, address = ? WHERE memberId = ?")) {
         statement.setString(1, firstName);
         statement.setString(2, lastName);
@@ -346,7 +347,7 @@ public class Library {
 	 public static Member getMemberById(String memberId) {
 		    Member member = null;
 		    // Connect to the database and execute the query to retrieve the member by ID
-		    try (Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/librarymanagementsystem", "root", "Elias$#22");
+		    try (Connection connection = DatabaseConnector.getConnection();
 		         PreparedStatement statement = connection.prepareStatement("SELECT * FROM member WHERE memberId = ?")) {
 		        statement.setString(1, memberId);
 		        try (ResultSet resultSet = statement.executeQuery()) {
@@ -371,7 +372,7 @@ public class Library {
 	 
 	 public static boolean updateBook(int bookId, String Title, String author, String genre, String ISBN) {
 		    // Connect to the database and execute the update query
-		    try (Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/librarymanagementsystem", "root", "Elias$#22");
+		    try (Connection connection = DatabaseConnector.getConnection();
 		         PreparedStatement statement = connection.prepareStatement("UPDATE book SET Title = ?, author = ?, genre = ?, ISBN = ? WHERE bookId = ?")) {
 		        statement.setString(1, Title);
 		        statement.setString(2, author);
@@ -389,7 +390,7 @@ public class Library {
 	 public static Book getBookById(int bookId) {
 				    Book book = null;
 				    // Connect to the database and execute the query to retrieve the member by ID
-				    try (Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/librarymanagementsystem", "root", "Elias$#22");
+				    try (Connection connection = DatabaseConnector.getConnection();
 				         PreparedStatement statement = connection.prepareStatement("SELECT * FROM book WHERE bookId = ?")) {
 				        statement.setInt(1, bookId);
 				        try (ResultSet resultSet = statement.executeQuery()) {

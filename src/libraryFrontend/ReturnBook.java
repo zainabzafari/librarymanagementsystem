@@ -18,6 +18,7 @@ import java.awt.Color;
 import app.bolivia.swing.JCTextField;
 import libraryBackend.BookStatus;
 import libraryBackend.BorrowedBookStatus;
+import libraryBackend.DatabaseConnector;
 import libraryBackend.ReservationManager;
 
 import javax.swing.border.MatteBorder;
@@ -41,10 +42,7 @@ public class ReturnBook extends JPanel {
 	private RSMaterialButtonRectangle ReturnBook;
 	
 	
-	private static final String DB_URL = "jdbc:mysql://localhost:3306/LibraryManagementSystem";
-    private static final String DB_USER = "root";
-    private static final String DB_PASSWORD = "Elias$#22";
-
+	
 	/**
 	 * Create the panel.
 	 */
@@ -80,7 +78,7 @@ public class ReturnBook extends JPanel {
         String bookId = issueBookField.getText().trim();
         String memberId = issueMemberField.getText().trim();
 
-        try (Connection connection = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD)) {
+        try (Connection connection = DatabaseConnector.getConnection()) {
             String sql = "SELECT * FROM Borrowedbook WHERE BookId = ? AND MemberId = ?";
             PreparedStatement statement = connection.prepareStatement(sql);
             statement.setString(1, bookId);

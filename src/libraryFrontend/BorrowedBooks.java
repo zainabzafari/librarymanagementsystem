@@ -19,6 +19,7 @@ import javax.swing.table.DefaultTableModel;
 
 import libraryBackend.CustomTableCellRenderer;
 import libraryBackend.CustomTableHeaderRenderer;
+import libraryBackend.DatabaseConnector;
 
 import javax.swing.JScrollPane;
 
@@ -43,7 +44,7 @@ public class BorrowedBooks extends JPanel {
 
         try {
 
-            Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/LibraryManagementSystem", "root", "Elias$#22");
+            Connection connection = DatabaseConnector.getConnection();
            
              String query = "SELECT * FROM BorrowedBook";
              PreparedStatement stmt = connection.prepareStatement(query);
